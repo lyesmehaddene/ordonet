@@ -1,5 +1,7 @@
+@import "../config/colors";
+
 .primary-btn{
-  background-color: #3575AB;
+  background-color: $primary-color;
   color: white;
   padding: 10px 20px;
   border-radius: 4px;
@@ -9,7 +11,7 @@
 }
 
 .secondary-btn{
-  background: rgba(157, 231, 215, 0.80);
+  background: $secondary-color;
   color: #565656;
   padding: 10px 20px;
   border-radius: 4px;
