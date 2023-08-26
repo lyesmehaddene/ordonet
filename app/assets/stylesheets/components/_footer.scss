@@ -1,8 +1,10 @@
+@import "../config/colors";
+
 .footer{
   width: 100%;
   height: fit-content;
   flex-shrink: 0;
-  background-color: #3575AB;
+  background-color: $primary-color;
   position: relative;
   bottom:0;
 }
