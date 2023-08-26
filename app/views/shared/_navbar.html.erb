@@ -1,0 +1,13 @@
+<header class="navbar">
+    <div class="logo">
+      <%= link_to root_path do %>
+        <%= image_tag 'logo_blue.png', alt:'Ordonet Logo' %>
+      <% end %>
+    </div>
+    <ul class="nav-links">
+        <%= link_to "Profile", root_path, class: 'primary-btn' %>
+        <%= link_to "Déconnexion", root_path, data: {turbo_method: :delete}, class: 'primary-btn' %>
+        <%= link_to 'Connexion', root_path, class: 'primary-btn' %>
+        <%= link_to 'S\'inscrire', root_path, class: 'secondary-btn' %>
+    </ul>
+  </header>

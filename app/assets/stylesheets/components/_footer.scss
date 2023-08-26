@@ -1,0 +1,26 @@
+.footer{
+  width: 100%;
+  height: fit-content;
+  flex-shrink: 0;
+  background-color: #3575AB;
+  position: relative;
+  bottom:0;
+}
+
+.footer-logo{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.contact-info{
+  color: white;
+  text-align: center;
+  padding: 10px;
+    a{
+      color: white;
+      text-decoration: none;
+    }
+}
