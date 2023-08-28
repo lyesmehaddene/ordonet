@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Sidebar</title>
+  <!-- Styles -->
+  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap'>
+</head>
+<body>
+  <!-- Barre de navigation latérale -->
+  <nav class="sidebar close">
+    <header>
+      <!-- Logo et nom du docteur -->
+      <div class="image-text">
+        <span class="image">
+
+        </span>
+        <div class="text logo-text">
+          <span class="name">Nom du Docteur</span>
+          <span class="profession">Specialité</span>
+        </div>
+      </div>
+      <!-- Bouton de basculement de la barre latérale -->
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <!-- Contenu du menu de navigation -->
+    <div class="menu-bar">
+      <div class="menu">
+        <li class="search-box">
+          <i class='bx bx-search icon'></i>
+          <input type="text" placeholder="Search...">
+        </li>
+        <ul class="menu-links">
+          <!-- Liens de menu -->
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+          <a href="#">
+              <i class='bx bx-home-alt icon'></i>
+              <span class="text nav-text">Rendez-vous</span>
+            </a>
+
+        </ul>
+      </div>
+      <!-- Contenu en bas de la barre latérale -->
+      <div class="bottom-content">
+        <li class="">
+          <a href="#">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
+          </a>
+        </li>
+        <!-- Mode sombre / clair -->
+        <li class="mode">
+          <div class="sun-moon">
+            <i class='bx bx-moon icon moon'></i>
+            <i class='bx bx-sun icon sun'></i>
+          </div>
+          <span class="mode-text text">Dark mode</span>
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenu principal de la page -->
+  <section class="content">
+    <!-- Insérez ici le contenu de la page principale (dashboard, rendez-vous, patients, etc.) -->
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    // Récupération des éléments DOM
+    const body = document.querySelector("body"),
+      sidebar = body.querySelector("nav.sidebar"),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+    // Gestion du clic sur le bouton de basculement de la barre latérale
+    toggle.addEventListener("click", () => {
+      sidebar.classList.toggle("close");
+    });
+
+    // Gestion du clic sur la zone de recherche
+    searchBtn.addEventListener("click", () => {
+      sidebar.classList.remove("close");
+    });
+
+    // Gestion du clic sur le bouton de basculement du mode sombre / clair
+    modeSwitch.addEventListener("click", () => {
+      body.classList.toggle("dark");
+      modeText.innerText = body.classList.contains("dark") ? "Light mode" : "Dark mode";
+    });
+  </script>
+</body>
+</html>
