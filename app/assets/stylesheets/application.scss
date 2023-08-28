@@ -1,9 +1,4 @@
-@import "bootstrap";
-@import "font-awesome";
-@import "components/navbar";
-@import "components/footer";
-@import "components/buttons";
-@import "../config/colors";
+@import 'components/_index';
 
 body{
   height: 100vh;
