@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: { registrations: 'registrations' }
   resources :appointments, only: %i[index show create new] do
     resources :ordonnances, only: %i[show create new]
   end

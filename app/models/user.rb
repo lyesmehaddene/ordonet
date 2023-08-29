@@ -1,15 +1,12 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validate :at_least_one_flag_true
-
-  private
-
-  def at_least_one_flag_true
-    unless patient || doctor
-      errors.add(:base, "At least one of flag1 or flag2 must be true")
-    end
-  end
-
+  has_one :doctor, dependent: :destroy
 end
