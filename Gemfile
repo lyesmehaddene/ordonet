@@ -49,6 +49,8 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 gem "sassc-rails"
 
+gem "pg"
+
 gem "font-awesome-sass", "~> 6.1"
 gem "autoprefixer-rails"
 gem "bootstrap", "~> 5.2"
