@@ -30,6 +30,8 @@
       <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" }%>
+      <%= f.hidden_field :user_type, value: 'doctor' %>
+
   </div>
 
   <div class="form-actions">
