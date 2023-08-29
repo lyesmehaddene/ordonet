@@ -8,24 +8,32 @@
 
 <div class="container">
   <div id="mySidenav" class="sidenav">
-    <div class="doctor-info">
-      <span class="name">Nom du Docteur</span>
-      <span class="speciality">Spécialité</span>
+
+    <div id="doctorInfo" class="doctor-info">
+      <span id="doctorName"></span><br>
+      <span id="doctorSpecialty"></span>
     </div>
 
-    <a href="dashboard">
-      <i class='bx bx-home-alt icon'></i> Dashboard
-    </a>
-
-    <!--  Manque leLink to Rendez-vous -->
-    <a href="#">
-      <i class='bx bx-calendar icon'></i> Rendez-vous
-    </a>
-
-    <!-- Manque le Link to Patients -->
-    <a href="#">
-      <i class='bx bxs-user-detail icon'></i> Patients
-    </a>
+    <ul class="nav-links">
+      <li class="nav-link">
+        <a href="dashboard">
+          <i class='bx bx-home-alt icon'></i>
+          <span class="text nav-text">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-link">
+        <a href="#">
+          <i class='bx bx-calendar icon'></i>
+          <span class="text nav-text">Rendez-vous</span>
+        </a>
+      </li>
+      <li class="nav-link">
+        <a href="#">
+          <i class='bx bxs-user-detail icon'></i>
+          <span class="text nav-text">Patients</span>
+        </a>
+      </li>
+    </ul>
   </div>
 
   <button class="round-btn" onclick="toggleNav()">
@@ -49,16 +57,20 @@ function toggleNav() {
     roundBtn.classList.add("active");
     mainContent.style.marginLeft = sidenavWidth;
   }
-}
 
-function updateDoctorInfo(name, specialty) {
-  var doctorName = document.querySelector(".name");
-  var doctorSpeciality = document.querySelector(".speciality");
-  doctorName.textContent = name;
-  doctorSpeciality.textContent = specialty;
-}
+  // Vérifier si l'utilisateur est connecté et afficher les informations du docteur
+  var loggedIn = true;
+  if (loggedIn) {
+    var doctorName = "Dr. John Doe";
+    var doctorSpecialty = "Cardiologist";
 
-updateDoctorInfo("Dr. Dupont Moretti", "Généraliste");
+    var doctorNameElement = document.getElementById("doctorName");
+    var doctorSpecialtyElement = document.getElementById("doctorSpecialty");
+
+    doctorNameElement.textContent = doctorName;
+    doctorSpecialtyElement.textContent = doctorSpecialty;
+  }
+}
 </script>
 
 </body>

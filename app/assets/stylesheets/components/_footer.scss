@@ -1,6 +1,4 @@
-
-
-@import "../config/colors";
+/* Vos styles existants */
 
 body {
   margin: 0;
@@ -11,23 +9,24 @@ body {
 
 .content {
   flex: 1;
-  /* Autres styles pour le contenu principal */
+
 }
 
 .footer {
   background-color: #3498db;
   color: white;
   text-align: center;
-  padding: 10px; /* Ajustez selon vos besoins */
+  padding: 10px;
+  margin-top: auto;
 }
 
 .footer-logo {
-  margin-top: 10px; /* Ajustez selon vos besoins */
-  margin-bottom: 10px; /* Ajustez selon vos besoins */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .contact-info {
-  margin-bottom: 10px; /* Ajustez selon vos besoins */
+  margin-bottom: 10px; 
 }
 
 .contact-info a {

@@ -1,24 +1,16 @@
+@import "../config/colors";
+
 body {
   font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.doctor-info {
-  text-align: center;
-  padding: 20px 0;
-  background-color: #f7f7f7;
+.container {
+  display: flex;
+  position: relative;
 }
 
-.doctor-info .name {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.doctor-info .speciality {
-  font-size: 1.2em;
-  color: #666;
-}
 .sidenav {
   height: 100%;
   width: 0;
@@ -26,7 +18,7 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: rgba(17, 17, 17, 0.8);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -56,9 +48,74 @@ body {
 #main {
   transition: margin-left .5s;
   padding: 16px;
+  margin-left: 0;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+
+.round-btn {
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+  top: 20px;
+  left: -23px;
+  transition: 0.5s;
+  transform: translateX(0);
+}
+
+.round-btn.active {
+  transform: translateX(250px);
+}
+
+/* Icon style */
+.round-btn .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+.doctor-info {
+  color: white;
+  text-align: center;
+  margin: 20px 0;
+}
+
+#doctorName {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#doctorSpecialty {
+  font-size: 18px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.nav-link:last-child {
+  margin-bottom: 0;
 }
