@@ -5,9 +5,12 @@
       <% end %>
     </div>
     <ul class="nav-links">
+      <% if user_signed_in? %>
         <%= link_to "Profile", root_path, class: 'primary-btn' %>
         <%= link_to "Déconnexion", root_path, data: {turbo_method: :delete}, class: 'secondary-btn' %>
+      <% else %>
         <%= link_to 'Connexion', root_path, class: 'primary-btn' %>
         <%= link_to 'S\'inscrire', root_path, class: 'secondary-btn' %>
+      <% end %>
     </ul>
   </header>
