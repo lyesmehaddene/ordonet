@@ -1,8 +1,9 @@
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'MuseoSans,helvetica,arial,sans-serif';
 }
 
 :root {
@@ -27,6 +28,7 @@ body {
   transition: var(--tran-05);
 }
 
+
 ::selection {
   background-color: var(--primary-color);
   color: #fff;
@@ -44,9 +46,9 @@ body.dark {
 /* ===== Sidebar ===== */
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 82bopx;
   left: 0;
-  height: 100%;
+  height: calc(100% - 82px);
   width: 250px;
   padding: 10px 14px;
   background: var(--sidebar-color);
@@ -54,7 +56,7 @@ body.dark {
   z-index: 100;
 }
 .sidebar.close {
-  width: 88px;
+  width: 0px;
 }
 
 /* ===== Reusable code - Here ===== */
@@ -301,6 +303,7 @@ body.dark .switch::before {
   left: 78px;
   height: 100vh;
   width: calc(100% - 78px);
+
 }
 body.dark .home .text {
   color: var(--text-color);
