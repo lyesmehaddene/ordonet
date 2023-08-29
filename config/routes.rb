@@ -30,4 +30,6 @@ Rails.application.routes.draw do
   get 'users/update'
   get 'users/destroy'
   root to: 'pages#home'
+  get 'dashboard', to: 'pages#dashboard'
+
 end

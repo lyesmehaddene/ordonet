@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Dashboard Sidebar</title>
-  <!-- Styles -->
-  <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap'>
-</head>
-<body>
+
   <!-- Barre de navigation latérale -->
   <nav class="sidebar close">
     <header>
@@ -35,10 +26,10 @@
         <ul class="menu-links">
           <!-- Liens de menu -->
           <li class="nav-link">
-            <a href="#">
+            <%= link_to dashboard_path do%>
               <i class='bx bx-home-alt icon'></i>
               <span class="text nav-text">Dashboard</span>
-            </a>
+            <% end %>
           </li>
           <li>
           <a href="#">
@@ -108,5 +99,4 @@
       modeText.innerText = body.classList.contains("dark") ? "Light mode" : "Dark mode";
     });
   </script>
-</body>
-</html>
+
