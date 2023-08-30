@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-
 <div class="container">
   <div id="mySidenav" class="sidenav">
+
 <%= render 'shared/doctor-info'%>
+
+    <div id="doctorInfo" class="doctor-info">
+      <span id="doctorName"></span><br>
+      <span id="doctorSpecialty"></span>
+    </div>
+
 
     <ul class="nav-links">
       <li class="nav-link">
@@ -18,16 +17,18 @@
         </a>
       </li>
       <li class="nav-link">
-        <a href="#">
+       <%= link_to new_appointment_path do %>
           <i class='bx bx-calendar icon'></i>
           <span class="text nav-text">Rendez-vous</span>
         </a>
+        <% end %>
       </li>
       <li class="nav-link">
-        <a href="#">
+       <%= link_to doctor_patients_path(doctor_id: current_user.id) do %>
           <i class='bx bxs-user-detail icon'></i>
           <span class="text nav-text">Patients</span>
         </a>
+        <% end %>
       </li>
     </ul>
   </div>
@@ -68,6 +69,3 @@ function toggleNav() {
   }
 }
 </script>
-
-</body>
-</html>

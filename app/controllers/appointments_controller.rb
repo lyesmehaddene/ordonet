@@ -6,13 +6,15 @@ class AppointmentsController < ApplicationController
   def show; end
 
   def create
-    @appointment = Appointment.new(appointment_params)
+    @appointment = Appointment.new()
     @appointment.patient = get_patient_id
-    @appointment.doctor = current_user
-    if @appointment.save
-      redirect_to appointment_path(@appointment)
-    else
-      render :new, status: :unprocessable_entity
+    @appointment.doctor = current_user.doctor
+    if params[:commit] == 'Confirmer le nouveau rendez-vous'
+      if @appointment.save
+        redirect_to appointment_path(@appointment)
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
@@ -23,13 +25,13 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:first_name, :last_name)
+    params.require(:appointment).permit(:patient_id, :doctor_id)
   end
 
   def get_patient_id
-    @patient_first_name = params[:patient_first_name]
-    @patient_last_name = params[:patient_last_name]
-    @patient = Patient.find_by(first_name: @patient_first_name, last_name: @patient_last_name)
-    @patient.id
+    @patient_first_name = params["appointments"]["first_name"]
+    @patient_last_name = params["appointments"]["last_name"]
+    @user_patient = User.find_by(first_name: @patient_first_name, last_name: @patient_last_name)
+    Patient.find_by(user_id: @user_patient.id)
   end
 end

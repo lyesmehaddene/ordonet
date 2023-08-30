@@ -1,0 +1,48 @@
+<div class="container-form pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+<h2>Inscription</h2>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.error_notification %>
+<div class="form-inputs">
+    <div class="row">
+    <%= f.input :email,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "email" }%>
+   <div class="col-6 mb-3">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Prénom" }, class: 'col-6 mb-3'%>
+                </div>
+  <div class="col-6 mb-3">
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Nom de famille" }%></div>
+     <%= f.input :password,
+                required: true,
+                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                input_html: { autocomplete: "Mot de passe" }%>
+      <%= f.input :password_confirmation,
+                required: true,
+                input_html: { autocomplete: "Confirmer mot de passe" }%>
+      <%= f.hidden_field :user_type, value: 'doctor' %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Sign up", class: 'primary-button'%>
+    <%= f.button :submit, "Log in", class: 'secondary-btn'%>
+  </div>
+    </div>
+  </div>
+
+<% end %>
+
+  </div>
+  </div>
+</div>

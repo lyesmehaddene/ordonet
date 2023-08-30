@@ -1,2 +1,29 @@
-<h1>Doctors#new</h1>
-<p>Find me in app/views/doctors/new.html.erb</p>
+<div class="container-form pt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+
+      <h2>Complétez votre profil</h2>
+
+      <%= simple_form_for(@doctor) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <div class="row">
+            <%= f.input :accreditation_number,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "Accréditation" }%>
+            <%= f.input :specialty,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "Spécialité" }, class: 'col-6 mb-3'%>
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, "Compléter le profil", class: 'primary-button'%>
+          </div>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
