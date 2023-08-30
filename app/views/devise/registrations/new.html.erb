@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
 
-<h2>Sign up</h2>
+<h2>Inscription</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -16,20 +16,20 @@
     <%= f.input :first_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "first name" }, class: 'col-6 mb-3'%>
+                input_html: { autocomplete: "Prénom" }, class: 'col-6 mb-3'%>
                 </div>
   <div class="col-6 mb-3">
     <%= f.input :last_name,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "last name" }%></div>
+                input_html: { autocomplete: "Nom de famille" }%></div>
      <%= f.input :password,
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" }%>
+                input_html: { autocomplete: "Mot de passe" }%>
       <%= f.input :password_confirmation,
                 required: true,
-                input_html: { autocomplete: "new-password" }%>
+                input_html: { autocomplete: "Confirmer mot de passe" }%>
       <%= f.hidden_field :user_type, value: 'doctor' %>
 
   </div>
