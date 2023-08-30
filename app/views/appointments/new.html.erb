@@ -6,23 +6,35 @@
 
 
 <%= simple_form_for :non_model_form do |f|%>
-<div class="form-inputs appointment-container">
+<div class="form-inputs appointment-container p-3">
   <h3 class="appointment-h3">Le patient est déjà enregistré</h3>
     <div class="row">
-    <%= f.input :first_name,
+      <div class="col-6">
+         <%= f.input :last_name,
+                label: false,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "Nom" },
-                class: "appointment-input"%>
-    <%= f.input :last_name,
+                placeholder: "Nom",
+                input_html: { autocomplete: "last-name" },
+                class: "appointment-input p-4"%>
+                </div>
+      <div class="col-6">
+        <%= f.input :first_name,
+                label: false,
+                placeholder: "Prénom",
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "Prénom" }, class: 'col-6 mb-3'%>
+                input_html: { autocomplete: "first-name" }, class: 'appointment-input m-4'%>
+                </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: 'primary-btn'%>
-    <%= f.button :submit, "Log in", class: 'secondary-btn'%>
+  <div class="form-actions form-center">
+    <%= f.button :submit, "Confirmer le nouveau rendez-vous", class: 'register-button'%>
+  </div>
+    <h3 class="appointment-h3">Le patient n'est pas encore enregistré</h3>
+    <div class="form-actions form-center">
+    <%= f.button :submit, "Créer un nouveau patient", class: 'register-button-second'%>
+  </div>
   </div>
     </div>
   </div>

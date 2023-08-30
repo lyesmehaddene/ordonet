@@ -1,20 +1,24 @@
 .appointment-h1{
   color: #61A8D3;
   font-family: Poppins;
-  font-size: 24px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .appointment-h3{
 color: #6B6B6B;
 text-align: center;
 font-family: Poppins;
-font-size: 16.989px;
+font-size: 20px;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
+padding: 20px;
 }
 
 .appointment-container{
@@ -26,4 +30,17 @@ line-height: normal;
   border-radius: 8.494px;
   border: 0.849px solid #EAEAEA;
   background: #FFF;
+  color: #6B6B6B;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.form-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
