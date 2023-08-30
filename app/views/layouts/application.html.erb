@@ -17,7 +17,9 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <%= render 'shared/sidenav' %>
+    <% if user_signed_in? %>
+        <%= render 'shared/sidenav' %>
+    <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
