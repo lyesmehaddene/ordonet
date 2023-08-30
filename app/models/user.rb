@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   has_one :doctor, dependent: :destroy
+  has_one :patient, dependent: :destroy
 end
