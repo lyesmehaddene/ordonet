@@ -1,5 +1,5 @@
 @import "../config/colors";
-.primary-btn{
+.primary-button{
   background-color: $primary-color;
   color: white;
   padding: 10px 20px;
@@ -18,4 +18,24 @@
   max-width: fit-content;
   margin: 10px;
   font-weight: 350;
+}
+
+.register-button{
+  background-color: $primary-color;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  max-width: 100%;
+  margin: 10px;
+}
+
+.register-button-second{
+  background-color: $secondary-color;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  max-width: 100%;
+  margin: 10px;
 }
