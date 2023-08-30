@@ -3,6 +3,11 @@
 @import "components/index";
 
 
+body{
+  height: 100vh;
+  overflow: hidden;
+}
+
 *{
   font-family : 'popins', sans-serif;
 }
