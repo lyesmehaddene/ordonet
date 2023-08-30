@@ -1,6 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "dashboard" %>
+    <title>Dashboard</title>
+</head>
+<body>
 <div id="main">
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <h1>Dashboard</h1>
+        </header>
+        <main class="dashboard-main">
 
-  <h1>Dashboard</h1>
-  <h3>Aujourd'hui</h3>
-  <h4>Patients vus</h4>
-</div>
+            <div class="calendar">
+                <input type="date" id="selectedDate">
+            </div>
+            <h4>Patients vus</h4>
+            <div class="patient-cards" id="patientCards">
+            </div>
+                <div class="patient-count-container">
+                Nombre de patients vus : <span class="patient-count" id="patientCount">0</span>
+            </div>
+        </main>
+    </div>
+    <script>
+        const selectedDateInput = document.getElementById('selectedDate');
+        const patientCardsContainer = document.getElementById('patientCards');
+
+        selectedDateInput.addEventListener('change', updatePatientCards);
+
+        function updatePatientCards() {
+            const selectedDate = selectedDateInput.value;
+            // Ici, je pourrais ajouter la logique pour récupérer les patients de la date sélectionnée ma votre source de données.
+            // Je pourrais utiliser une API pour obtenir les données des patients.??
+
+            // Supprimer les anciennes cartes de patients
+            patientCardsContainer.innerHTML = '';
+
+            // Exemple de données de patients (à remplacer par vos propres données)
+            const patients = [
+                { firstName: 'Josiane', lastName: 'NETTE' },
+            ];
+
+            // Ajouter les nouvelles cartes de patients
+            patients.forEach(patient => {
+                const card = document.createElement('div');
+                card.classList.add('patient-card');
+                card.textContent = `${patient.firstName} ${patient.lastName}`;
+                patientCardsContainer.appendChild(card);
+            });
+        }
+
+        // Mettre à jour les cartes de patients au chargement de la page
+        updatePatientCards();
+    </script>
+        </div>
+</body>
+</html>
