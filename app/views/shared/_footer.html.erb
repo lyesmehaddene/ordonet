@@ -1,12 +1,13 @@
+<!DOCTYPE html>
+<html>
 
-<footer class="footer">
-  <div class="footer-logo">
-    <%= link_to root_path do %>
-      <%= image_tag 'logo_white.png', alt: 'Ordonet Logo' %>
-    <% end %>
-  </div>
-  <div class="contact-info">
-    <p>Nous contacter <%= mail_to 'contact@ordonet.com' %></p>
-    <p>&copy; <%= Time.now.year %> Ordonet. Tous droits réservés.</p>
+  <footer class="footer">
+    <div class="footer-logo">
     </div>
-</footer>
+    <div class="contact-info">
+      <p>Nous contacter <a href="mailto:contact@ordonet.com">contact@ordonet.com</a></p>
+      <p>&copy; <%= Time.now.year %> Ordonet. Tous droits réservés.</p>
+    </div>
+  </footer>
+</body>
+</html>

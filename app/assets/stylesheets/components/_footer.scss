@@ -1,24 +1,35 @@
-@import "../config/colors";
+/* Vos styles existants */
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+
+}
 
 .footer {
-  width: 100%;
-  background-color: $primary-color;
+  background-color: #3498db;
   color: white;
   text-align: center;
-  padding: 5px;
-  position: absolute;
-  bottom: 0;
-  z-index: 1000;
+  padding: 10px;
+  margin-top: auto;
 }
 
 .footer-logo {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .contact-info {
-  a {
-    color: white;
-    text-decoration: none;
-  }
+  margin-bottom: 10px; 
+}
+
+.contact-info a {
+  color: white;
+  text-decoration: none;
 }

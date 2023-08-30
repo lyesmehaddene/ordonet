@@ -1,78 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Barre de navigation latérale -->
-  <nav class="sidebar close">
-    <header>
-      <!-- Logo et nom du docteur -->
-      <div class="image-text">
-        <span class="image">
+</head>
+<body>
 
-        </span>
-        <div class="text logo-text">
-          <span class="name">Nom du Docteur</span>
-          <span class="profession">Specialité</span>
-        </div>
-      </div>
-      <!-- Bouton de basculement de la barre latérale -->
-      <i class='bx bx-chevron-right toggle'></i>
-    </header>
-
-    <!-- Contenu du menu de navigation -->
-    <div class="menu-bar">
-      <div class="menu">
-        <ul class="menu-links">
-          <!-- Liens de menu -->
-          <li class="nav-link">
-            <%= link_to dashboard_path do%>
-              <i class='bx bx-home-alt icon'></i>
-              <span class="text nav-text">Dashboard</span>
-            <% end %>
-          </li>
-          <li>
-          <a href="#">
-              <i class='bx bx-calendar icon'></i>
-              <span class="text nav-text">Rendez-vous</span>
-            </a>
-          </li>
-          <li>
-              <a href="#">
-              <i class='bx bxs-user-detail icon'></i>
-              <span class="text nav-text">Patients</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!-- Contenu en bas de la barre latérale -->
+<div class="container">
+  <div id="mySidenav" class="sidenav">
+    <div id="doctorInfo" class="doctor-info">
+      <span id="doctorName"></span><br>
+      <span id="doctorSpecialty"></span>
     </div>
-  </nav>
 
-  <!-- Contenu principal de la page -->
-  <section class="content">
-    <!-- Insérez ici le contenu de la page principale (dashboard, rendez-vous, patients, etc.) -->
-  </section>
+    <ul class="nav-links">
+      <li class="nav-link">
+        <a href="dashboard">
+          <i class='bx bx-home-alt icon'></i>
+          <span class="text nav-text">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-link">
+        <a href="#">
+          <i class='bx bx-calendar icon'></i>
+          <span class="text nav-text">Rendez-vous</span>
+        </a>
+      </li>
+      <li class="nav-link">
+        <a href="#">
+          <i class='bx bxs-user-detail icon'></i>
+          <span class="text nav-text">Patients</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
-  <!-- Scripts -->
-  <script>
-    // Récupération des éléments DOM
-    const body = document.querySelector("body"),
-      sidebar = body.querySelector("nav.sidebar"),
-      toggle = body.querySelector(".toggle"),
-      searchBtn = body.querySelector(".search-box"),
-      modeSwitch = body.querySelector(".toggle-switch"),
-      modeText = body.querySelector(".mode-text");
+  <button class="round-btn" onclick="toggleNav()">
+    <span class="icon bx bx-chevron-right toggle"></span>
+  </button>
+</div>
 
-    // Gestion du clic sur le bouton de basculement de la barre latérale
-    toggle.addEventListener("click", () => {
-      sidebar.classList.toggle("close");
-    });
+<script>
+function toggleNav() {
+  var sidenavWidth = "250px";
+  var sidenav = document.getElementById("mySidenav");
+  var roundBtn = document.querySelector(".round-btn");
+  var mainContent = document.getElementById("main");
 
-    // Gestion du clic sur la zone de recherche
-    searchBtn.addEventListener("click", () => {
-      sidebar.classList.remove("close");
-    });
+  if (sidenav.style.width === sidenavWidth) {
+    sidenav.style.width = "0";
+    roundBtn.classList.remove("active");
+    mainContent.style.marginLeft = "0";
+  } else {
+    sidenav.style.width = sidenavWidth;
+    roundBtn.classList.add("active");
+    mainContent.style.marginLeft = sidenavWidth;
+  }
+  
+  // Vérifier si l'utilisateur est connecté et afficher les informations du docteur
+  var loggedIn = true;
+  if (loggedIn) {
+    var doctorName = "Dr. John Doe";
+    var doctorSpecialty = "Cardiologist";
 
-    // Gestion du clic sur le bouton de basculement du mode sombre / clair
-    modeSwitch.addEventListener("click", () => {
-      body.classList.toggle("dark");
-      modeText.innerText = body.classList.contains("dark") ? "Light mode" : "Dark mode";
-    });
-  </script>
+    var doctorNameElement = document.getElementById("doctorName");
+    var doctorSpecialtyElement = document.getElementById("doctorSpecialty");
+
+    doctorNameElement.textContent = doctorName;
+    doctorSpecialtyElement.textContent = doctorSpecialty;
+  }
+}
+</script>
+
+</body>
+</html>
