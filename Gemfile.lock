@@ -263,7 +263,7 @@ DEPENDENCIES
   bootstrap (~> 5.2)
   capybara
   debug
-  devise
+  devise (~> 4.9)
   faker
   font-awesome-sass (~> 6.1)
   importmap-rails
