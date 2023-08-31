@@ -1,7 +1,6 @@
 class OrdoMedicationsController < ApplicationController
   def new
     @ordo_medication = OrdoMedication.new
-
   end
 
   def create

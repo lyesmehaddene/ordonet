@@ -11,10 +11,11 @@
 
     <ul class="nav-links">
       <li class="nav-link">
-        <a href="dashboard">
+        <%= link_to dashboard_path do %>
           <i class='bx bx-home-alt icon'></i>
           <span class="text nav-text">Dashboard</span>
         </a>
+        <% end %>
       </li>
       <li class="nav-link">
        <%= link_to new_appointment_path do %>
