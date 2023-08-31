@@ -8,11 +8,14 @@
     <%= f.input :frequency,label: "Nombre de doses par jour",
                         required: true,
                         autofocus: true,
-                        input_html: { autocomplete: "Médication" }%>
-    <%= f.input :frequency,label: "Durée du traitement en jours",
+                        input_html: { autocomplete: "Fréquency" }%>
+    <%= f.input :duration,label: "Durée du traitement en jours",
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "Médication" }%>
+                input_html: { autocomplete: "Durée" }%>
+    <%= f.input :commentary,label: "Informations complémentaires",
+    autofocus: true,
+    input_html: { autocomplete: "Informations Complémentaires" }%>
   </div>
 
   <div class="form-actions">
