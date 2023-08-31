@@ -1,19 +1,20 @@
 class OrdonnancesController < ApplicationController
+ before_action :get_appointment_id, only: %i[new]
   def show
+    @ordonnance = Ordonnance.find(params[:id])
   end
 
   def new
-    @ordonnance = Ordonnance.new
-  end
+    @ordonnance = Ordonnance.new(appointment: @appointment)
 
-  def create
-    @ordonnance = Ordonnance.new(ordonnance_params)
-    @ordonnance.appointment = get_appointment_id
     if @ordonnance.save
-      redirect_to ordonnance_path(@ordonnance)
+      redirect_to appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def create
   end
 
   private

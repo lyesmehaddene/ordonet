@@ -2,11 +2,11 @@
   <div class="head-rdv">
     <div class="titles">
       <h1 class="appointment-h1" id="rdv">Mon rendez-vous</h1>
-      <h2>Patient: <%= "#{@appointment.patient.user.first_name} #{@appointment.patient.user.last_name.upcase}"%></h2>
+      <h2 id="patient-name"><strong>Patient:</strong> <%= "#{@appointment.patient.user.first_name} #{@appointment.patient.user.last_name.upcase}"%></h2>
     </div>
     <div class="ordo-end">
       <div class="create-ordo">
-        <%= link_to doctor_patients_path(doctor_id: current_user.id) do %>
+        <%= link_to new_appointment_ordonnance_path(appointment_id: @appointment.id), class: "button-ordo" do %>
           Créer une ordonnance
         <% end %>
       </div>
@@ -16,33 +16,87 @@
 
   <div class="consultation">
     <div>
-      <h5>Mes Consultations</h5>
+      <%= link_to "#", id: "my-consults-btn" do %>
+        <h5>Mes consultations</h5>
+      <% end %>
     </div>
     <div>
-      <p>Toutes les consultations<p>
+      <%= link_to "#", id: "all-consults-btn" do %>
+        <p>Toutes les consultations</p>
+      <% end %>
     </div>
   </div>
 
+<div id="my-consults" class="consultation-content">
   <div class="detail-consult">
     <div class="year_month">
       <div class="year">
-        <p>2021</p>
+        <% year = @appointment.created_at.strftime("%Y") %>
+        <p><%=year%></p>
       </div>
       <div class="month">
-        <p>Janvier</p>
+        <% month = @appointment.created_at.strftime("%B") %>
+        <p><%=month%></p>
       </div>
     </div>
     <div class="card-consult">
       <div class="doctor">
         <div class="doctor-name">
-          <p>Dr. John Doe</p>
+          <h5><%="Dr.#{current_user.last_name} #{current_user.first_name}"%></h5><p><%=@appointment.doctor.specialty%></p>
         </div>
-        <div class="doctor-specialty">
-          <p>Cardiologue</p>
-        </div>
+        <div>
           <div class="text-consult"></div>
           <div class="pdf-consult"></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<div id="all-consults" class="consultation-content" style="display: none;">
+  <!-- Contenu de Toutes les consultations -->
+    <div class="detail-consult">
+    <div class="year_month">
+      <div class="year">
+        <% year = @appointment.created_at.strftime("%Y") %>
+        <p><%=year%></p>
+      </div>
+      <div class="month">
+        <% month = @appointment.created_at.strftime("%B") %>
+        <p><%=month%></p>
+      </div>
+    </div>
+    <div class="card-consult">
+      <%# <div class="doctor">
+        <div class="doctor-name">
+          <h5><%="Dr.#{current_user.last_name} #{current_user.first_name}"%></h5><p><%=@appointment.doctor.specialty%></p>
+        </div>
+        <div>
+          <div class="text-consult"></div>
+          <div class="pdf-consult"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const myConsultsBtn = document.getElementById('my-consults-btn');
+    const allConsultsBtn = document.getElementById('all-consults-btn');
+    const myConsults = document.getElementById('my-consults');
+    const allConsults = document.getElementById('all-consults');
+
+    myConsultsBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      myConsults.style.display = "block";
+      allConsults.style.display = "none";
+    });
+
+    allConsultsBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      allConsults.style.display = "block";
+      myConsults.style.display = "none";
+    });
+  });
+</script>

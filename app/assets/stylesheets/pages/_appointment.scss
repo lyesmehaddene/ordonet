@@ -1,3 +1,5 @@
+@import "../config/colors";
+
 .appointment-h1{
   color: #61A8D3;
   font-family: Poppins;
@@ -43,4 +45,85 @@ padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.head-rdv {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 10px;
+  margin: 10px;
+}
+
+#patient-name {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+#rdv {
+  text-align: left;
+}
+
+.consultation {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px;
+  padding: 25px;
+  height: 110px;
+  width: 100%;
+  background-color: #F7F7F7;
+  border-radius: 7px;
+
+  h5 {
+    font-weight: 600;
+    color: #3575AB;
+    font-size: 16px;
+    text-decoration: none;
+  }
+
+  p{
+    font-weight: 400;
+    color: #C2C2C2;
+    font-size: 16px;
+    text-decoration: none;
+  }
+}
+
+
+#my-consults-btn {
+  text-decoration: none;
+}
+#all-consults-btn {
+  text-decoration: none;
+}
+
+.detail-consult {
+  display: flex;
+  flex-direction: column;
+  column-gap: 5px;
+  justify-content: center;
+  padding: 15px;
+  width: 80%;
+  margin: 15px auto;
+  .year {
+    font-weight: 800;
+    color: #3575AB;
+    font-size: 24px;
+  }
+  .month {
+    font-weight: 600;
+    color: #6B6B6B;
+    font-size: 16px;
+    padding-left: 15px;
+  }
 }
