@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_145019) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_31_122316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_145019) do
     t.bigint "medication_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "frequency"
+    t.integer "duration"
     t.index ["medication_id"], name: "index_ordo_medications_on_medication_id"
     t.index ["ordonnance_id"], name: "index_ordo_medications_on_ordonnance_id"
   end
@@ -58,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_145019) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "appointment_id"
+    t.integer "ordonnance_number"
     t.index ["appointment_id"], name: "index_ordonnances_on_appointment_id"
   end
 
