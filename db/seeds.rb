@@ -48,7 +48,7 @@ p 'Creating patients...'
 end
 
 puts 'Creating appointments...'
-10.times do |i|
+10.times do |_i|
   Appointment.create!(
     doctor_id: Faker::Number.between(from: 1, to: 5),
     patient_id: Faker::Number.between(from: 1, to: 5),
