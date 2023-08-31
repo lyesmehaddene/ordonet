@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+  before_action :set_appointment, only: %i[show edit update destroy]
+
   def index
     @appointments = Appointment.find_by(patient: params[:patient_id])
   end
@@ -26,6 +28,10 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:patient_id, :doctor_id)
+  end
+
+  def set_appointment
+    @appointment = Appointment.find(params[:id])
   end
 
   def get_patient_id
