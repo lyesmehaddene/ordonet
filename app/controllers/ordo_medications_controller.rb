@@ -1,4 +1,4 @@
-class OrdoMedicationsController < ApplicationController
+  class OrdoMedicationsController < ApplicationController
   def new
     @ordo_medication = OrdoMedication.new
 
