@@ -1,0 +1,21 @@
+<%= simple_form_for :ordonnance, url: new_appointment_ordonnance_ordo_medication_path, method: :post do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :medication, collection: Medication.all.map { |medication| [medication.name, medication.id] }, label: "Médicament",
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "Médication" }%>
+    <%= f.input :frequency,label: "Nombre de doses par jour",
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "Médication" }%>
+    <%= f.input :frequency,label: "Durée du traitement en jours",
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Médication" }%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Valider", class: 'register-button' %>
+  </div>
+<% end %>

@@ -1,7 +1,0 @@
-<%= turbo_frame_tag "remote_modal" do %>
-  <div id='my_modal' class="my_modal" data-controller="remote-modal" data-remote-modal-target='modalElement'>
-  <button type="button" class="btn-close" data-remote-modal-target='closebtn' data-action='click->remote-modal#close'></button>
-    <h1><%= title %></h1>
-    <%= yield %>
-  </div>
-<% end %>
