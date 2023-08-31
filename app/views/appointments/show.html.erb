@@ -1,2 +1,48 @@
-<h1>Appointments#show</h1>
-<p>Find me in app/views/appointments/show.html.erb</p>
+<div class="container-1200">
+  <div class="head-rdv">
+    <div class="titles">
+      <h1 class="appointment-h1" id="rdv">Mon rendez-vous</h1>
+      <h2>Patient: <%= "#{@appointment.patient.user.first_name} #{@appointment.patient.user.last_name.upcase}"%></h2>
+    </div>
+    <div class="ordo-end">
+      <div class="create-ordo">
+        <%= link_to doctor_patients_path(doctor_id: current_user.id) do %>
+          Créer une ordonnance
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="consultation">
+    <div>
+      <h5>Mes Consultations</h5>
+    </div>
+    <div>
+      <p>Toutes les consultations<p>
+    </div>
+  </div>
+
+  <div class="detail-consult">
+    <div class="year_month">
+      <div class="year">
+        <p>2021</p>
+      </div>
+      <div class="month">
+        <p>Janvier</p>
+      </div>
+    </div>
+    <div class="card-consult">
+      <div class="doctor">
+        <div class="doctor-name">
+          <p>Dr. John Doe</p>
+        </div>
+        <div class="doctor-specialty">
+          <p>Cardiologue</p>
+        </div>
+          <div class="text-consult"></div>
+          <div class="pdf-consult"></div>
+      </div>
+    </div>
+  </div>
+</div>

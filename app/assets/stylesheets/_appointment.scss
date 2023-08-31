@@ -1,0 +1,58 @@
+.head-rdv {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 10px;
+  margin: 10px;
+}
+
+#patient-name {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+#rdv {
+  text-align: left;
+}
+
+.consultation {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  margin: 5px;
+  padding: 25px;
+  height: 110px;
+  width: 100%;
+  background-color: #F7F7F7;
+  border-radius: 7px;
+
+  h5 {
+    font-weight: 600;
+    color: $third-color;
+    font-size: 16px;
+  }
+
+  p{
+    font-weight: 400;
+    color: $third-color;
+    font-size: 16px;
+  }
+}
+
+.detail-consult {
+  display: flex;
+  flex-direction: column;
+  column-gap: 10px;
+  justify-content: center;
+  padding: 15px;
+  width: 80%;
+}
