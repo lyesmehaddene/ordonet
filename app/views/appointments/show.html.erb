@@ -2,47 +2,122 @@
   <div class="head-rdv">
     <div class="titles">
       <h1 class="appointment-h1" id="rdv">Mon rendez-vous</h1>
-      <h2>Patient: <%= "#{@appointment.patient.user.first_name} #{@appointment.patient.user.last_name.upcase}"%></h2>
+      <h2 id="patient-name"><strong>Patient:</strong> <%= "#{@appointment.patient.user.first_name} #{@appointment.patient.user.last_name.upcase}"%></h2>
     </div>
     <div class="ordo-end">
       <div class="create-ordo">
-        <%= link_to doctor_patients_path(doctor_id: current_user.id) do %>
-          Créer une ordonnance
+        <%= link_to new_appointment_ordonnance_path(appointment_id: @appointment.id), class: "button-ordo" do %>
+          <%= "Créer une ordonnance" %>
         <% end %>
       </div>
     </div>
   </div>
+</div>
 
 
   <div class="consultation">
     <div>
-      <h5>Mes Consultations</h5>
+      <%= link_to "#", id: "my-consults-btn" do %>
+        <h5>Mes consultations</h5>
+      <% end %>
     </div>
     <div>
-      <p>Toutes les consultations<p>
+      <%= link_to "#", id: "all-consults-btn" do %>
+        <p>Toutes les consultations</p>
+      <% end %>
     </div>
   </div>
 
-  <div class="detail-consult">
-    <div class="year_month">
-      <div class="year">
-        <p>2021</p>
+<div id="my-consults" class="consultation-content">
+  <%@myConsults = Appointment.where(patient_id: @appointment.patient.id, doctor_id: current_user.doctor.id)%>
+  <% if @myConsults.empty? %>
+    <p>No data</p>
+  <% else %>
+  <%@myConsults.each do |consultation|%>
+    <div class="detail-consult">
+      <div class="year_month">
+        <div class="year">
+          <% year = consultation.created_at.strftime("%Y") %>
+          <p><%=year%></p>
+        </div>
+        <div class="month">
+          <% month = consultation.created_at.strftime("%B") %>
+          <p><%=month%></p>
+        </div>
       </div>
-      <div class="month">
-        <p>Janvier</p>
+      <div class="card-consult">
+        <div class="presentation-consult">
+          <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
+          <h5> <%= "✒️ #{consultation.content}"%></h5>
+        </div>
+        <div class="pdf-consult">
+          <div>
+          <%# <%= link_to "Voir le PDF", consultation.ordonnance.pdf.url, target: "_blank" do%>
+          <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
+          <i class="fa-solid fa-download fa-l" style="color: #e5e5e5;"></i>
+          <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="card-consult">
-      <div class="doctor">
-        <div class="doctor-name">
-          <p>Dr. John Doe</p>
-        </div>
-        <div class="doctor-specialty">
-          <p>Cardiologue</p>
-        </div>
-          <div class="text-consult"></div>
-          <div class="pdf-consult"></div>
-      </div>
-    </div>
-  </div>
+  <%end%>
+  <%end%>
 </div>
+
+<div id="all-consults" class="consultation-content" style="display: none;">
+  <!-- Contenu de Toutes les consultations -->
+  <%@consultations = Appointment.where(patient_id: @appointment.patient.id)%>
+  <% if @consultations.empty? %>
+    <p>No data</p>
+  <% else %>
+  <%@consultations.each do |consultation|%>
+    <div class="detail-consult">
+      <div class="year_month">
+        <div class="year">
+          <% year = consultation.created_at.strftime("%Y") %>
+          <p><%=year%></p>
+        </div>
+        <div class="month">
+          <% month = consultation.created_at.strftime("%B") %>
+          <p><%=month%></p>
+        </div>
+      </div>
+      <div class="card-consult">
+        <div class="presentation-consult">
+          <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
+          <h5> <%= "✒️ #{consultation.content}"%></h5>
+        </div>
+        <div class="pdf-consult">
+          <div>
+          <%# <%= link_to "Voir le PDF", consultation.ordonnance.pdf.url, target: "_blank" do%>
+          <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
+          <i class="fa-solid fa-download fa-l" style="color: #e5e5e5;"></i>
+          <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end%>
+  <%end%>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const myConsultsBtn = document.getElementById('my-consults-btn');
+    const allConsultsBtn = document.getElementById('all-consults-btn');
+    const myConsults = document.getElementById('my-consults');
+    const allConsults = document.getElementById('all-consults');
+
+    myConsultsBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      myConsults.style.display = "block";
+      allConsults.style.display = "none";
+    });
+
+    allConsultsBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      allConsults.style.display = "block";
+      myConsults.style.display = "none";
+    });
+  });
+</script>
