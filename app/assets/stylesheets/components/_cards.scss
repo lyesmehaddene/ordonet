@@ -1,6 +1,6 @@
 .card-consult {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   margin: 20px;
   padding: 25px;
   height: 150px;
@@ -8,4 +8,33 @@
   border-radius: 7px;
   border: 3px solid #E5E5E5;
 
+  .presentation-consult {
+    display: flex;
+    flex-direction: column;
+    column-gap: 5px;
+    align-items: start;
+    width: 100%;
+
+    h5 {
+      font-weight: 600;
+      color: #6B6B6B;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    p{
+      font-weight: 400;
+      color: #3575AB;
+      font-size: 16px;
+      text-decoration: none;
+    }
+  }
+
+  .pdf-consult {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+  }
 }

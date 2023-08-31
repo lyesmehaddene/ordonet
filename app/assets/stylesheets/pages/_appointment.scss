@@ -77,11 +77,11 @@ padding: 20px;
   text-align: center;
   justify-content: space-around;
   align-items: center;
-  margin: 5px;
+  margin: 0 auto;
   padding: 25px;
   height: 110px;
-  width: 100%;
-  background-color: #F7F7F7;
+  width: 80%;
+  background-color: #F9F9F9;
   border-radius: 7px;
 
   h5 {
@@ -114,16 +114,16 @@ padding: 20px;
   justify-content: center;
   padding: 15px;
   width: 80%;
-  margin: 15px auto;
+  margin: 5px auto;
   .year {
     font-weight: 800;
     color: #3575AB;
-    font-size: 24px;
+    font-size: 20px;
   }
   .month {
     font-weight: 600;
     color: #6B6B6B;
-    font-size: 16px;
+    font-size: 14px;
     padding-left: 15px;
   }
 }
