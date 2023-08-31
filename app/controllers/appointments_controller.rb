@@ -11,6 +11,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new()
     @appointment.patient = get_patient_id
     @appointment.doctor = current_user.doctor
+    @appointment.appointment_date = Date.today
     if params[:commit] == 'Confirmer le nouveau rendez-vous'
       if @appointment.save
         redirect_to appointment_path(@appointment)
