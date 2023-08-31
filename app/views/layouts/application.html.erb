@@ -18,6 +18,7 @@
     <% if user_signed_in? %>
         <%= render 'shared/sidenav' %>
     <% end %>
+    <%= turbo_frame_tag "remote_modal", target: "_top" %>
     <%= yield %>
     <%= render 'shared/footer' %>
   </body>
