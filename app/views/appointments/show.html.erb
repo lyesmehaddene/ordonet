@@ -1,4 +1,4 @@
-<div class="container-1200">
+<div class="container-1200" data-controller="appointments">
   <div class="head-rdv">
     <div class="titles">
       <h1 class="appointment-h1" id="rdv">Mon rendez-vous</h1>
@@ -15,18 +15,18 @@
 </div>
 
 
-  <div class="consultation">
+<div class="consultation-btn">
     <div>
-      <%= link_to "#", id: "my-consults-btn" do %>
-        <h5>Mes consultations</h5>
-      <% end %>
+        <p id="my-consults-btn" class="consults-btn">Mes consultations</p>
     </div>
     <div>
-      <%= link_to "#", id: "all-consults-btn" do %>
-        <p>Toutes les consultations</p>
-      <% end %>
+        <p id="all-consults-btn" class="consults-btn">Toutes les consultations</p>
     </div>
-  </div>
+</div>
+
+
+  <% prev_year = nil %>
+  <% prev_month = nil %>
 
 <div id="my-consults" class="consultation-content">
   <%@myConsults = Appointment.where(patient_id: @appointment.patient.id, doctor_id: current_user.doctor.id)%>
@@ -34,21 +34,37 @@
     <p>No data</p>
   <% else %>
   <%@myConsults.each do |consultation|%>
+    <% current_year = consultation.created_at.strftime("%Y") %>
+    <% current_month = consultation.created_at.strftime("%B") %>
     <div class="detail-consult">
       <div class="year_month">
-        <div class="year">
+        <% if current_year != prev_year %>
+          <div class="year">
           <% year = consultation.created_at.strftime("%Y") %>
           <p><%=year%></p>
+        <%end%>
         </div>
-        <div class="month">
+        <% if current_month != prev_month %>
+          <div class="month">
           <% month = consultation.created_at.strftime("%B") %>
           <p><%=month%></p>
         </div>
+        <% end %>
+        <% prev_year = current_year %>
+        <% prev_month = current_month %>
       </div>
       <div class="card-consult">
         <div class="presentation-consult">
           <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
+          <% if consultation.content.nil? %>
+            <%= link_to edit_appointment_path(consultation), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
+              <p>✒️ Ajouter une note</p>
+            <% end %>
+
+            <%# <%=# link_to "✒️ Ajouter une note", "#", id: "editButton_#{consultation.id}" %>
+          <% else %>
           <h5> <%= "✒️ #{consultation.content}"%></h5>
+          <% end %>
         </div>
         <div class="pdf-consult">
           <div>
@@ -59,11 +75,16 @@
           </div>
         </div>
       </div>
+    <div id="editForm_<%= consultation.id %>" style="display:none;">
+      <%= render partial: 'appointments/edit_form', locals: { appointment: consultation } %>
     </div>
-  <%end%>
-  <%end%>
+    <%end%>
+    <%end%>
+    </div>
 </div>
 
+  <% prev_year = nil %>
+  <% prev_month = nil %>
 <div id="all-consults" class="consultation-content" style="display: none;">
   <!-- Contenu de Toutes les consultations -->
   <%@consultations = Appointment.where(patient_id: @appointment.patient.id)%>
@@ -73,14 +94,22 @@
   <%@consultations.each do |consultation|%>
     <div class="detail-consult">
       <div class="year_month">
-        <div class="year">
+        <% current_year = consultation.created_at.strftime("%Y") %>
+        <% current_month = consultation.created_at.strftime("%B") %>
+        <% if current_year != prev_year %>
+          <div class="year">
           <% year = consultation.created_at.strftime("%Y") %>
           <p><%=year%></p>
+        <%end%>
         </div>
-        <div class="month">
+        <% if current_month != prev_month %>
+          <div class="month">
           <% month = consultation.created_at.strftime("%B") %>
           <p><%=month%></p>
         </div>
+        <% end %>
+        <% prev_year = current_year %>
+        <% prev_month = current_month %>
       </div>
       <div class="card-consult">
         <div class="presentation-consult">
@@ -96,28 +125,7 @@
           </div>
         </div>
       </div>
+    <%end%>
+    <%end%>
     </div>
-  <%end%>
-  <%end%>
 </div>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const myConsultsBtn = document.getElementById('my-consults-btn');
-    const allConsultsBtn = document.getElementById('all-consults-btn');
-    const myConsults = document.getElementById('my-consults');
-    const allConsults = document.getElementById('all-consults');
-
-    myConsultsBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      myConsults.style.display = "block";
-      allConsults.style.display = "none";
-    });
-
-    allConsultsBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      allConsults.style.display = "block";
-      myConsults.style.display = "none";
-    });
-  });
-</script>

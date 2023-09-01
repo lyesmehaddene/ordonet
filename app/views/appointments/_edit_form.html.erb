@@ -1,0 +1,12 @@
+<%= simple_form_for :appointment, url: appointment_path(@appointment), method: :patch, data: { turbo_frame: "reload" } do |f| %>
+  <div class="form-inputs">
+    <%= f.input :content,label: "Commentaire",
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "Ajouter un commentaire" }%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Valider", class: 'register-button' %>
+  </div>
+<% end %>
