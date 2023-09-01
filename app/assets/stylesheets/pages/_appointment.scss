@@ -72,7 +72,7 @@ padding: 20px;
   text-align: left;
 }
 
-.consultation {
+.consultation-btn{
   display: flex;
   text-align: center;
   justify-content: space-around;
@@ -84,14 +84,14 @@ padding: 20px;
   background-color: #F9F9F9;
   border-radius: 7px;
 
-  h5 {
+  .active {
     font-weight: 600;
     color: #3575AB;
     font-size: 16px;
     text-decoration: none;
   }
 
-  p{
+  .non-active{
     font-weight: 400;
     color: #C2C2C2;
     font-size: 16px;
@@ -102,9 +102,17 @@ padding: 20px;
 
 #my-consults-btn {
   text-decoration: none;
+  &:hover {
+    color: #3575AB;
+    cursor: pointer;
+  }
 }
 #all-consults-btn {
   text-decoration: none;
+  &:hover {
+    color: #3575AB;
+    cursor: pointer;
+  }
 }
 
 .detail-consult {
