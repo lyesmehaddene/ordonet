@@ -1,9 +1,35 @@
+.container-ordonnance{
+  width: 900px;
+  margin: 0 auto ;
+}
+
 .container-infos-ordonnance {
-  display: grid; // Display the divs in a grid container
-  grid-template-columns: 1fr 1fr; // Create two equal columns
-  column-gap: 300px; // Add spacing between the columns
+  display: flex; // Display the divs in a grid container
+  justify-content: space-between;
   font-family: 'Roboto', sans-serif;
   margin: 0 auto;
+}
+
+.container-medicaments-ordonnance{
+  display: flex;
+  flex-direction: column;
+}
+
+.bold {
+  color: #6B6B6B;
+  font-family: poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.commentary{
+  color: #6B6B6B;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 200;
+  padding-bottom: 25px;
 }
 
 .svg-container {

@@ -2,5 +2,5 @@
 <%# Render le form %>
 
 <%= render "remote_modal", title: "Nouveau médicament" do %>
-  <%= render "form"%>
+  <%= render "form", appointment: @appointment, ordonnance: @ordonnance %>
 <% end %>

@@ -1,7 +1,7 @@
-<%= simple_form_for :ordonnance, url: new_appointment_ordonnance_ordo_medication_path, method: :post do |f| %>
+<%= simple_form_for :ordo_medication, url: appointment_ordonnance_ordo_medications_path, method: :post do |f| %>
 
   <div class="form-inputs">
-    <%= f.input :medication, collection: Medication.all.map { |medication| [medication.name, medication.id] }, label: "Médicament",
+    <%= f.input :medication_id, collection: Medication.all.map { |medication| [medication.name, medication.id] }, label: "Médicament",
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "Médication" }%>
