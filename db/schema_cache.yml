@@ -1,0 +1,523 @@
+--- !ruby/object:ActiveRecord::ConnectionAdapters::SchemaCache
+columns:
+  schema_migrations:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: version
+    sql_type_metadata: &1 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::TypeMetadata
+      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+        sql_type: character varying
+        type: :string
+        limit:
+        precision:
+        scale:
+      oid: 1043
+      fmod: -1
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  ar_internal_metadata:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: key
+    sql_type_metadata: *1
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: value
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - &4 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: created_at
+    sql_type_metadata: &2 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::TypeMetadata
+      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+        sql_type: timestamp(6) without time zone
+        type: :datetime
+        limit:
+        precision: 6
+        scale:
+      oid: 1114
+      fmod: 6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - &5 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: updated_at
+    sql_type_metadata: *2
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  ordonnances:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: &6 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::TypeMetadata
+      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+        sql_type: bigint
+        type: :integer
+        limit: 8
+        precision:
+        scale:
+      oid: 20
+      fmod: -1
+    'null': false
+    default:
+    default_function: nextval('ordonnances_id_seq'::regclass)
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: is_signed
+    sql_type_metadata: &3 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::TypeMetadata
+      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+        sql_type: boolean
+        type: :boolean
+        limit:
+        precision:
+        scale:
+      oid: 16
+      fmod: -1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: is_sent
+    sql_type_metadata: *3
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: appointment_id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  users:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function: nextval('users_id_seq'::regclass)
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: doctor
+    sql_type_metadata: *3
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: patient
+    sql_type_metadata: *3
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: first_name
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: last_name
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: email
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: birthday
+    sql_type_metadata: !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::TypeMetadata
+      delegate_dc_obj: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+        sql_type: date
+        type: :date
+        limit:
+        precision:
+        scale:
+      oid: 1082
+      fmod: -1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+  patients:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function: nextval('patients_id_seq'::regclass)
+    collation:
+    comment:
+  - &7 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: user_id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+  doctors:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function: nextval('doctors_id_seq'::regclass)
+    collation:
+    comment:
+  - *7
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: specialty
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: accreditation_number
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+  appointments:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function: nextval('appointments_id_seq'::regclass)
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: doctor_id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: patient_id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: appointment_date
+    sql_type_metadata: *2
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: content
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+  - &8 !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: ordonnance_id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  ordo_medications:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function: nextval('ordo_medications_id_seq'::regclass)
+    collation:
+    comment:
+  - *8
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: medication_id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+  medications:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial: true
+    generated: ''
+    name: id
+    sql_type_metadata: *6
+    'null': false
+    default:
+    default_function: nextval('medications_id_seq'::regclass)
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: name
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::PostgreSQL::Column
+    serial:
+    generated: ''
+    name: description
+    sql_type_metadata: *1
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - *4
+  - *5
+primary_keys:
+  schema_migrations: version
+  ar_internal_metadata: key
+  ordonnances: id
+  users: id
+  patients: id
+  doctors: id
+  appointments: id
+  ordo_medications: id
+  medications: id
+data_sources:
+  schema_migrations: true
+  ar_internal_metadata: true
+  ordonnances: true
+  users: true
+  patients: true
+  doctors: true
+  appointments: true
+  ordo_medications: true
+  medications: true
+indexes:
+  schema_migrations: []
+  ar_internal_metadata: []
+  ordonnances:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: ordonnances
+    name: index_ordonnances_on_appointment_id
+    unique: false
+    columns:
+    - appointment_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  users: []
+  patients:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: patients
+    name: index_patients_on_user_id
+    unique: false
+    columns:
+    - user_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  doctors:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: doctors
+    name: index_doctors_on_user_id
+    unique: false
+    columns:
+    - user_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  appointments:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: appointments
+    name: index_appointments_on_doctor_id
+    unique: false
+    columns:
+    - doctor_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: appointments
+    name: index_appointments_on_ordonnance_id
+    unique: false
+    columns:
+    - ordonnance_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: appointments
+    name: index_appointments_on_patient_id
+    unique: false
+    columns:
+    - patient_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  ordo_medications:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: ordo_medications
+    name: index_ordo_medications_on_medication_id
+    unique: false
+    columns:
+    - medication_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: ordo_medications
+    name: index_ordo_medications_on_ordonnance_id
+    unique: false
+    columns:
+    - ordonnance_id
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using: :btree
+    comment:
+  medications: []
+version: 20230829134023
+database_version: 140008

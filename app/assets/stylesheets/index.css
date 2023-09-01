@@ -1,0 +1,72 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+.patient-container {
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+h2 {
+  color: #3575AB;
+  padding: 10px;
+  margin: 19px;
+  margin-left: 300px;
+
+}
+
+
+#search-card {
+  padding: 20px;
+  margin-left: 300px;
+  margin-right: 20px;
+}
+
+
+#search-card {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+#search {
+  width: 56%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 300px;
+  box-shadow: 1px;
+}
+
+/* #search-button {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+} */
+
+
+#patient-info {
+
+  margin-left: 284px;
+  margin-right: 20px;
+  padding: 20px;
+}
+
+.patient-card {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 20px;
+}

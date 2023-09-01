@@ -21,4 +21,13 @@ class PatientsController < ApplicationController
 
   def destroy
   end
+
+  def search
+    if params[:search].present?
+      @patients = Patient.joins(:user).where('users.first_name LIKE ?', "%#{params[:search]}%")
+    else
+      @patients = Patient.all
+    end
+    render 'index'
+  end
 end
