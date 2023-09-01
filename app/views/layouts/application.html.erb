@@ -15,7 +15,7 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <% if user_signed_in? %>
+    <% if user_signed_in? && current_user.doctor.present? %>
         <%= render 'shared/sidenav' %>
     <% end %>
     <%= turbo_frame_tag "remote_modal", target: "_top" %>
