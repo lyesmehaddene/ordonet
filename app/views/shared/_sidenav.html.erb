@@ -11,21 +11,20 @@
 
     <ul class="nav-links">
       <li class="nav-link">
-        <%= link_to dashboard_path do %>
+        <a href="dashboard">
           <i class='bx bx-home-alt icon'></i>
           <span class="text nav-text">Dashboard</span>
         </a>
-        <% end %>
       </li>
       <li class="nav-link">
-       <%= link_to new_appointment_path do %>
+      <%= link_to new_appointment_path do %>
           <i class='bx bx-calendar icon'></i>
           <span class="text nav-text">Rendez-vous</span>
         </a>
         <% end %>
       </li>
       <li class="nav-link">
-       <%= link_to doctor_patients_path(doctor_id: current_user.id) do %>
+      <%= link_to doctor_patients_path(doctor_id: current_user.id) do %>
           <i class='bx bxs-user-detail icon'></i>
           <span class="text nav-text">Patients</span>
         </a>
@@ -56,7 +55,6 @@ function toggleNav() {
     mainContent.style.marginLeft = sidenavWidth;
   }
 
-  // Vérifier si l'utilisateur est connecté et afficher les informations du docteur
   var loggedIn = true;
   if (loggedIn) {
     var doctorName = "Dr. John Doe";

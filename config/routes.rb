@@ -8,12 +8,12 @@ Rails.application.routes.draw do
     resources :patients, only: %i[index show create new]
   end
 
-  resources :appointments, only: [] do
-    resources :ordonnances, only: %i[show create new] do
-      resources :ordo_medications, only: %i[new create]
-    end
-  end
-
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
+  
+  resources :patients do
+  collection do
+    get 'search'
+  end
+end
 end

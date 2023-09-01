@@ -1,2 +1,36 @@
-<h1>Patients#index</h1>
-<p>Find me in app/views/patients/index.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mes patients</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "index" %>
+</head>
+<body>
+  <div id="patient-list">
+    <h2>Liste de vos patients</h2>
+  </div>
+
+  <div id="search-bar">
+<%= form_tag(search_patients_path, method: 'get') do %>
+  <%= text_field_tag :search, params[:search], placeholder: 'Search..' %>
+  <%= submit_tag 'Search' %>
+<% end %>
+  </div>
+
+  <div id="patient-info">
+    <% if @patients.present? %>
+<% @patients.each do |patient| %>
+  <div class="patient-card">
+    <h3><%= patient.user.first_name %></h3>
+    <p><%= patient.age %> ans</p>
+
+  </div>
+<% end %>
+
+    <% else %>
+      <p>Pas de patients trouvés</p>
+    <% end %>
+  </div>
+</body>
+</html>
