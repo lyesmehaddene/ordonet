@@ -21,6 +21,18 @@ class AppointmentsController < ApplicationController
     end
   end
 
+  def edit
+    @appointment = Appointment.find(params[:id])
+    render json: { html_content: render_to_string(partial: 'edit_form', locals: { appointment: @appointment }, formats: [:html]) }
+  end
+
+  def update
+    @appointment = Appointment.find(params[:id])
+    @appointment.update(appointment_params)
+    raise
+    redirect_to appointment_path(@appointment)
+  end
+
   def new
     @appointment = Appointment.new
   end

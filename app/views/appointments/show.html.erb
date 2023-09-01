@@ -56,7 +56,15 @@
       <div class="card-consult">
         <div class="presentation-consult">
           <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
+          <% if consultation.content.nil? %>
+            <%= link_to edit_appointment_path(consultation), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
+              <p>✒️ Ajouter une note</p>
+            <% end %>
+
+            <%# <%=# link_to "✒️ Ajouter une note", "#", id: "editButton_#{consultation.id}" %>
+          <% else %>
           <h5> <%= "✒️ #{consultation.content}"%></h5>
+          <% end %>
         </div>
         <div class="pdf-consult">
           <div>
@@ -67,6 +75,9 @@
           </div>
         </div>
       </div>
+    <div id="editForm_<%= consultation.id %>" style="display:none;">
+      <%= render partial: 'appointments/edit_form', locals: { appointment: consultation } %>
+    </div>
     <%end%>
     <%end%>
     </div>
