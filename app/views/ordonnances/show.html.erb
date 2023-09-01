@@ -1,4 +1,5 @@
 <h1 class="appointment-h1">Création d'une ordonnance</h1>
+<div class="container-ordonnance">
 
 <div class="container-infos-ordonnance">
   <div>
@@ -13,14 +14,18 @@
     <div class="pt-3"><p><strong>Date de la consultation :</strong> <%= @appointment.appointment_date.strftime("%d/%m/%Y") %></p></div>
   </div>
 
-<div>
-<%# medications[]
-    medications[1].name %>
-    <%# Faire appel à tous les ordo med where ordonnance id = param etc
-    faire un for each %>
+<div class = "container-medicaments-ordonnance">
+  <div><p><strong>Prescription :</strong></p></div>
+  <%= turbo_frame_tag "meds", target: "_top" do %>
+      <% OrdoMedication.where(ordonnance_id: @ordonnance.id).each do |ordo_medication| %>
+      <div class="bold">
+      <%= "#{Medication.find(ordo_medication.medication_id).name} - #{ordo_medication.frequency} prises par jour pendant #{ordo_medication.duration} jours"%></div>
+      <div class="commentary"><%= ordo_medication.commentary %></div>
+        <% end %>
+  <% end %>
 </div>
 
-<%= link_to new_appointment_ordonnance_ordo_medication_path(@ordonnance.id, @ordonnance), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
+<%= link_to new_appointment_ordonnance_ordo_medication_path(@appointment, @ordonnance), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
   <div class="svg-container">
     <svg xmlns="http://www.w3.org/2000/svg" width="102" height="102" viewBox="0 0 102 102" fill="none">
     <path d="M51 8.5C27.54 8.5 8.5 27.54 8.5 51C8.5 74.46 27.54 93.5 51 93.5C74.46 93.5 93.5 74.46 93.5 51C93.5 27.54 74.46 8.5 51 8.5ZM68 55.25H55.25V68C55.25 70.3375 53.3375 72.25 51 72.25C48.6625 72.25 46.75 70.3375 46.75 68V55.25H34C31.6625 55.25 29.75 53.3375 29.75 51C29.75 48.6625 31.6625 46.75 34 46.75H46.75V34C46.75 31.6625 48.6625 29.75 51 29.75C53.3375 29.75 55.25 31.6625 55.25 34V46.75H68C70.3375 46.75 72.25 48.6625 72.25 51C72.25 53.3375 70.3375 55.25 68 55.25Z" fill="#61A8D3"/>
@@ -28,6 +33,4 @@
     <p>Ajouter un médicament</p>
 </div>
   <% end %>
-
-
-<%# Prévoir un bouton avec link to vers data turbo frame %>
+</div>

@@ -5,11 +5,12 @@ class OrdoMedicationsController < ApplicationController
 
   def create
     @ordo_medication = OrdoMedication.new(ordo_medication_params)
-    @medication = Medication.find_by(name: params[:medication_name])
-    @ordo_medication.medication = @medication
+    @medication = Medication.find(params["ordo_medication"]["medication_id"])
+    @ordo_medication.medication_id = @medication.id
     @ordo_medication.ordonnance = Ordonnance.find(params[:ordonnance_id])
+
     if @ordo_medication.save
-      redirect_to ordonnance_path(@ordo_medication.ordonnance)
+      redirect_to request.referer
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,6 +19,6 @@ class OrdoMedicationsController < ApplicationController
   private
 
   def ordo_medication_params
-    params.require(:ordo_medication).permit(:frequency, :duration)
+    params.require(:ordo_medication).permit(:frequency, :duration, :commentary, :medication_id, :ordonnance_id)
   end
 end
