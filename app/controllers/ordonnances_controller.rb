@@ -28,7 +28,43 @@ class OrdonnancesController < ApplicationController
     end
   end
 
+  def create_pdf
+    @appointment = Appointment.find(params[:appointment_id])
+    @ordonnance = Ordonnance.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{current_user.first_name}_#{current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}", # Excluding ".pdf" extension.
+        template: "ordonnances/show",
+        layout: 'pdf',
+        disposition: :inline
+        # locals: { ordonnance: @ordonnance }
+      end
+    end
+    # respond_to do |format|
+    #   format.pdf do
+    #     pdf_content = generate_pdf_content
+    #     send_data pdf_content,
+    #       filename: "#{@current_user.first_name}_#{@current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}.pdf",
+    #       type: "application/pdf",
+    #       disposition: "inline" # Use "inline" to open the PDF in the browser, or "attachment" to force a download
+    #   end
+    # end
+  end
+
   private
+
+  def generate_pdf_content
+    render_to_string(
+      template: "ordonnances/show.pdf.erb",
+      layout: 'pdf.html.erb',
+      locals: { ordonnance: @ordonnance }
+    )
+    pdf # Make sure to return the generated PDF content
+  end
+
+
   def get_appointment_id
     @appointment = Appointment.find(params[:appointment_id])
   end

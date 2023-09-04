@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :appointments, only: %i[index show create new update edit] do
-    resources :ordonnances, only: %i[show create new]
+    resources :ordonnances, only: %i[show create new] do
+      get :create_pdf, on: :member
+    end
   end
 
   resources :doctors, only: %i[new create edit] do
@@ -14,13 +16,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :ordonnances, only: [] do
+    post 'create_pdf', on: :member
+  end
+
+
 
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
 
   resources :patients do
-  collection do
-    get 'search'
+    collection do
+      get 'search'
+    end
   end
-end
 end

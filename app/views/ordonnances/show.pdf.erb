@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%="#{current_user.first_name}_#{current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}"%></title>
+    <%= wicked_pdf_stylesheet_link_tag 'application' %>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+  </head>
+  <body>
+    <h1 class="appointment-h1">Ordonnance - via Ordonet</h1>
+    <div class="container-ordonnance">
+      <div class="container-infos-ordonnance">
+        <div>
+          <p><strong>Médecin :</strong> Dr. <%= current_user.first_name %> <%= current_user.last_name %></p>
+          <p> <strong>Numéro d'accréditation :</strong> <%= current_user.doctor.accreditation_number %></p>
+        </div>
+        <div>
+          <p><strong>Patient :</strong> <%= @appointment.patient.user.first_name %> <%= @appointment.patient.user.last_name %></p>
+        </div>
+      </div>
+        <div class="container-infos-ordonnance">
+          <div class="pt-3"><p><strong>Date de la consultation :</strong> <%= @appointment.appointment_date.strftime("%d/%m/%Y") %></p></div>
+        </div>
+
+      <div class = "container-medicaments-ordonnance">
+        <div><p><strong>Prescription :</strong></p></div>
+        <%= turbo_frame_tag "meds", target: "_top" do %>
+            <% OrdoMedication.where(ordonnance_id: @ordonnance.id).each do |ordo_medication| %>
+            <div class="bold">
+              <%= "#{Medication.find(ordo_medication.medication_id).name} - #{ordo_medication.frequency} prises par jour pendant #{ordo_medication.duration} jours"%></div>
+              <div class="commentary"><%= ordo_medication.commentary %></div>
+                <% end %>
+          <% end %>
+        </div>
+      </div>
+  </body>
+</html>
