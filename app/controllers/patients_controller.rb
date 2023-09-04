@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
   def index
-    @patients = Patient.all
+    @patients = current_user.doctor.patients.distinct
   end
 
   def show
@@ -24,9 +24,11 @@ class PatientsController < ApplicationController
 
   def search
     if params[:search].present?
-      @patients = Patient.joins(:user).where('users.first_name LIKE ?', "%#{params[:search]}%")
+      @patients = current_user.doctor.patients.joins(:user)
+                    .where('users.first_name LIKE ?', "%#{params[:search]}%")
+                    .distinct
     else
-      @patients = Patient.all
+      @patients = current_user.doctor.patients.distinct
     end
     render 'index'
   end
