@@ -1,10 +1,17 @@
 <div>
   <h1 class="appointment-h1">Création d'une ordonnance</h1>
     <% if !@ordonnance.qr_generated %>
-  <div class="container-heading">
-  <%= link_to 'Valider l\'ordonnance', generate_qrcode_appointment_ordonnance_path(@appointment, @ordonnance, ordonnance_number: @ordonnance.ordonnance_number), remote: true, id: 'generate_qrcode_button', class: 'primary-button' %>
-  </div>
+      <div class="container-heading">
+      <%= link_to 'Valider l\'ordonnance', generate_qrcode_appointment_ordonnance_path(@appointment, @ordonnance, ordonnance_number: @ordonnance.ordonnance_number), remote: true, id: 'generate_qrcode_button', class: 'primary-button' %>
+          </div>
+    <% else @ordonnance.qr_generated %>
+     <div class="container-heading">
+      <button type="button" class="primary-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Envoyer l'ordonnance
+    </button>
+      </div>
     <% end %>
+
 </div>
 
 <div class="container-ordonnance">
@@ -49,9 +56,22 @@
     <p>Ajouter un médicament</p>
 </div>
   <% end %>
-
-
-
-
-
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="appointment-h3 center" id="exampleModalLabel">Envoyer l'ordonnance</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Email:</strong> <%= @appointment.patient.user.email %></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary">Envoyer l'email</button>
+      </div>
+    </div>
+  </div>
 </div>
