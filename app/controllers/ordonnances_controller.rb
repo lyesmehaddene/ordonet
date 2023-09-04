@@ -50,7 +50,7 @@ class OrdonnancesController < ApplicationController
     @ordonnance = Ordonnance.find(params[:id])
     # Assuming you have an @ordonnance object
     qrcode = RQRCode::QRCode.new(@ordonnance.to_json)
-    qrcode_as_png = qrcode.as_png(
+    qrcode_as_svg = qrcode.as_png(
       offset: 0,
       color: 'black',
       module_size: 6,
@@ -60,8 +60,8 @@ class OrdonnancesController < ApplicationController
     )
 
     # Save the QR code as an image file
-    File.open(Rails.root.join('tmp', "qrcode-#{@ordonnance.ordonnance_number}.png"), 'wb') do |file|
-      file.write(qrcode_as_png)
+    File.open("./app/assets/images/qrcode-#{@ordonnance.ordonnance_number}.png", 'wb') do |file|
+      file.write(qrcode_as_svg)
     end
 
     # Update the is_used flag
@@ -70,7 +70,7 @@ class OrdonnancesController < ApplicationController
     # Redirect or render as needed
     respond_to do |format|
       format.html { redirect_to appointment_ordonnance_path(appointment_id: @ordonnance.appointment.id, id: @ordonnance.id) }
-      format.json { render json: { qr_code_url: asset_path("qrcode-#{ordonnance_number}.png") } }
+      format.json { render json: { qr_code_url: view_context.image_url("qrcode-#{ordonnance_number}.png") } }
     end
   end
 
