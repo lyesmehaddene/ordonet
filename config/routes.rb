@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :appointments, only: %i[index show create new update edit] do
     resources :ordonnances, only: %i[show create new] do
       get :create_pdf, on: :member
+      get 'generate_qrcode', on: :member, to: 'ordonnances#generate_qrcode'
     end
   end
 

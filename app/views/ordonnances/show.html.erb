@@ -1,4 +1,12 @@
-<h1 class="appointment-h1">Création d'une ordonnance</h1>
+<div>
+  <h1 class="appointment-h1">Création d'une ordonnance</h1>
+    <% if !@ordonnance.qr_generated %>
+  <div class="container-heading">
+  <%= link_to 'Valider l\'ordonnance', generate_qrcode_appointment_ordonnance_path(@appointment, @ordonnance, ordonnance_number: @ordonnance.ordonnance_number), remote: true, id: 'generate_qrcode_button', class: 'primary-button' %>
+  </div>
+    <% end %>
+</div>
+
 <div class="container-ordonnance">
 
 <div class="container-infos-ordonnance">
@@ -23,6 +31,14 @@
       <div class="commentary"><%= ordo_medication.commentary %></div>
         <% end %>
   <% end %>
+</div>
+
+<!-- Display the QR code using Turbo Frames -->
+<div class="ordonnance-qrcode">
+<%= turbo_frame_tag "qrcode_frame", target: "_top" do %>
+  <!-- Display the QR code image here using the helper method -->
+  <%= image_tag(qr_code_image_path(@ordonnance)) %>
+<% end %>
 </div>
 
 <%= link_to new_appointment_ordonnance_ordo_medication_path(@appointment, @ordonnance), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
