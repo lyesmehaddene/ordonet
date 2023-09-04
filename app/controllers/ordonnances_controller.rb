@@ -30,6 +30,22 @@ class OrdonnancesController < ApplicationController
     end
   end
 
+  def create_pdf
+    @appointment = Appointment.find(params[:appointment_id])
+    @ordonnance = Ordonnance.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{current_user.first_name}_#{current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}", # Excluding ".pdf" extension.
+        template: "ordonnances/show",
+        layout: 'pdf',
+        disposition: :inline
+        # locals: { ordonnance: @ordonnance }
+      end
+    end
+  end
+
   def generate_qrcode
     @ordonnance = Ordonnance.find(params[:id])
     # Assuming you have an @ordonnance object
@@ -59,6 +75,17 @@ class OrdonnancesController < ApplicationController
   end
 
   private
+
+  def generate_pdf_content
+    render_to_string(
+      template: "ordonnances/show.pdf.erb",
+      layout: 'pdf.html.erb',
+      locals: { ordonnance: @ordonnance }
+    )
+    pdf # Make sure to return the generated PDF content
+  end
+
+
   def get_appointment_id
     @appointment = Appointment.find(params[:appointment_id])
   end
