@@ -12,22 +12,20 @@
   </div>
 
   <div id="search-bar">
-<%= form_tag(search_patients_path, method: 'get') do %>
-  <%= text_field_tag :search, params[:search], placeholder: 'Search..' %>
-  <%= submit_tag 'Search' %>
-<% end %>
+    <%= form_tag(search_patients_path, method: 'get') do %>
+      <%= text_field_tag :search, params[:search], placeholder: 'Search..' %>
+      <%= submit_tag 'Search' %>
+    <% end %>
   </div>
 
   <div id="patient-info">
     <% if @patients.present? %>
-<% @patients.each do |patient| %>
-  <div class="patient-card">
-    <h3><%= patient.user.first_name %></h3>
-    <p><%= patient.age %> ans</p>
-
-  </div>
-<% end %>
-
+      <% @patients.each do |patient| %>
+        <div class="patient-card">
+          <h3><%= "#{patient.user.first_name} #{patient.user.last_name.upcase}" %>, <span class="small-text"><%= patient.age %> ans</span></h3>
+          <p>Vu pour la dernière fois: <%= patient.appointments.last&.appointment_date&.strftime("%d/%m/%Y") %></p>
+        </div>
+      <% end %>
     <% else %>
       <p>Pas de patients trouvés</p>
     <% end %>

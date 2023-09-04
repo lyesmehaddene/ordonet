@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
-  
+
   resources :patients do
   collection do
     get 'search'

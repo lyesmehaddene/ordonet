@@ -29,7 +29,6 @@ class AppointmentsController < ApplicationController
   def update
     @appointment = Appointment.find(params[:id])
     @appointment.update(appointment_params)
-    raise
     redirect_to appointment_path(@appointment)
   end
 
