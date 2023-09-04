@@ -23,13 +23,23 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
-    render json: { html_content: render_to_string(partial: 'edit_form', locals: { appointment: @appointment }, formats: [:html]) }
   end
 
   def update
     @appointment = Appointment.find(params[:id])
     @appointment.update(appointment_params)
-    redirect_to appointment_path(@appointment)
+    respond_to do |format|
+      if @appointment.update(appointment_params)
+        format.html { redirect_to request.referrer, notice: "Appointment was successfully updated." }
+        # format.html { render layout: false }
+        format.json { render json: @appointment }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @appointment.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      end
+    end
+    redirect_to request.referrer
   end
 
   def new
