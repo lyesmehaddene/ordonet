@@ -60,7 +60,7 @@ class OrdonnancesController < ApplicationController
     )
 
     # Save the QR code as an image file
-    File.open("/Users/lyesm/code/lyesmehaddene/ordonet/app/assets/images/qrcode-#{@ordonnance.ordonnance_number}.png", 'wb') do |file|
+    File.open("./app/assets/images/qrcode-#{@ordonnance.ordonnance_number}.png", 'wb') do |file|
       file.write(qrcode_as_svg)
     end
 
