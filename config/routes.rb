@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :appointments, only: %i[index show create new update edit] do
-    resources :ordonnances, only: %i[show create new]
+    resources :ordonnances, only: %i[show create new] do
+      get 'generate_qrcode', on: :member, to: 'ordonnances#generate_qrcode'
+    end
   end
 
   resources :doctors, only: %i[new create edit] do

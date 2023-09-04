@@ -3,6 +3,14 @@
   margin: 0 auto ;
 }
 
+.container-heading{
+  display: flex;
+  justify-content: end;
+  width: 900px;
+  margin: 0 auto ;
+  margin-bottom: 10px;
+}
+
 .container-infos-ordonnance {
   display: flex; // Display the divs in a grid container
   justify-content: space-between;
@@ -49,4 +57,15 @@
 .svg-container svg {
   width: 95px; /* Adjust size as needed */
   height: 95px;
+}
+
+.ordonnance-qrcode{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.center{
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
 }
