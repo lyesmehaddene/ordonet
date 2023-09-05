@@ -22,24 +22,29 @@
     <% end %>
     </div>
   <h4 class="dashboard-h3">Patients vus</h4>
-  <div id="patient-cards-container">
+  <div class="patient-cards-container">
     <% if @patients.present? %>
       <% @patients.each do |patient| %>
         <div class="patient-card">
-          <h3><%= "#{patient.user.first_name} #{patient.user.last_name.upcase}" %></h3>
+          <h3><%= "#{patient.user.last_name.upcase} #{patient.user.first_name}" %></h3>
         </div>
       <% end %>
     <% else %>
       <p>Pas de patients trouvés</p>
     <% end %>
 </div>
-<div id="patient-count-container">
-  <div class="patient-count-text">Nombre de patients vus aujourd'hui :</div>
-  <span class="patient-count" id="patientCount"><%= @patient_count %></span>
-</div>
-</div>
+  <h4 class="dashboard-h3">Statistiques de vos rendez-vous</h4>
+<div class="patient-count-container">
+    <div class="patient-count-card">
+      <h3 class="dashboard-h4">Nombre de patients vus aujourd'hui</h3>
+      <h4 class="patient-count"> <%= @patient_count %> </h4>
     </div>
-
+     <div class="patient-count-card">
+      <h3 class="dashboard-h4">Chiffre d'affaire généré</h3>
+      <h4 class="patient-count"> <%= @patient_count * 25 %> € </h4>
     </div>
+  </div>
+  </div>
+</div>
 </body>
 </html>

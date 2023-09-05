@@ -8,3 +8,54 @@
   line-height: normal;
   padding: 20px;
   }
+
+.patient-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-gap: 34px;
+    justify-items: center;
+    margin-bottom: 20px;
+    margin-left: 39px;
+    h3{
+      color: #6B6B6B;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      padding: 20px;
+    }
+  }
+
+.dashboard-h4{
+    color: #6B6B6B;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    padding: 15px;
+    margin: 0 auto;
+    }
+
+.patient-count-card {
+  width: fit-content;
+  height: fit-content;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+
+.patient-count {
+    color: #3575AB;
+    margin-top: 0 auto;
+  }

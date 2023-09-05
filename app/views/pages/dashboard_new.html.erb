@@ -11,7 +11,7 @@
             <%= text_field_tag :day, params[:day] || Date.today.strftime('%d/%m/%Y'), placeholder: "Recherche par jj/mm/aaaa" %>
             <%= submit_tag 'Rechercher' %>
     <% end %>
-    </div>
+  </div>
   <h4 class="dashboard-h3">Patients vus</h4>
   <div id="patient-cards-container">
     <% if @patients.present? %>
