@@ -1,10 +1,4 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.dashboard-header {
+.dashboard {
   color: #5c5b5b;
   padding: 20px;
   text-align: left;
@@ -25,10 +19,6 @@ body {
   margin-top: -28px;
 }
 
-.calendar {
-  margin-bottom: 20px;
-  font-size: 15px;
-}
 
 #patient-cards-container {
   display: grid;
@@ -60,22 +50,20 @@ body {
 
 .search-date input[type="submit"]{
   border: none;
-  border-bottom: 2px solid #ccc;
   padding: 5px 10px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
+  margin: -10px -79px;
   border-radius: 5px;
 }
 
 .search-date input[type="text"] {
-  border: none;
-  border-bottom: 2px solid #ccc;
+  border: 2px solid #ccc;
   padding: 5px 10px;
   text-decoration: none;
   margin: 4px 2px;
-  cursor: pointer;
   border-radius: 5px;
+  margin-top: 20px;
+  margin-left: 16px;
+
 }
 
 
@@ -101,7 +89,9 @@ body {
   border-radius: 10px;
   transition: transform 0.2s, box-shadow 0.2s;
   height: 30px;
-  margin-left: 12px;
+  margin-left: 140px;
+  margin-top: -35px;
+
 }
 
 .patient-count-text {
