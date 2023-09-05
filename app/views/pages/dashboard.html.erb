@@ -7,48 +7,44 @@
     <title>Dashboard</title>
 </head>
 <body>
-<div id="main">
-    <div class="dashboard">
-            <h1>Dashboard</h1>
-        <main class="dashboard-main">
 
-            <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-            <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-            <%= stylesheet_link_tag "dashboard" %>
-
+<div class="container-1200">
+  <h1 class="appointment-h1">
+    Dashboard
+  </h1>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag "dashboard" %>
     <div class="search-date" id="search-by-day">
             <%= form_tag(search_by_day_patients_path, method: 'get') do %>
             <%= text_field_tag :day, params[:day] || Date.today.strftime('%d/%m/%Y'), placeholder: "Recherche par jj/mm/aaaa" %>
-            <%= submit_tag 'Search' %>
+            <%= submit_tag 'Rechercher' %>
     <% end %>
-</div>
-            <h4>Patients vus</h4>
-<div id="patient-cards-container">
-  <% if @patients.present? %>
-    <% @patients.each do |patient| %>
-      <div class="patient-card">
-        <h3><%= "#{patient.user.first_name} #{patient.user.last_name.upcase}" %></h3>
-      </div>
-    <% end %>
-  <% else %>
-    <p>Pas de patients trouvés</p>
-  <% end %>
-</div>
-
-
-        </main>
     </div>
-</body>
-</html>
-<div id="patient-count-container">
-  <div class="patient-count-text">Nombre de patients vus aujourd'hui :</div>
-  <span class="patient-count" id="patientCount"><%= @patient_count %></span>
-</div>
-
-
-            </div>
-        </main>
-    </div>
+  <h4 class="dashboard-h3">Patients vus</h4>
+  <div class="patient-cards-container">
+    <% if @patients.present? %>
+      <% @patients.each do |patient| %>
+        <div class="patient-card">
+          <h3><%= "#{patient.user.last_name.upcase} #{patient.user.first_name}" %></h3>
         </div>
+      <% end %>
+    <% else %>
+      <p>Pas de patients trouvés</p>
+    <% end %>
+</div>
+  <h4 class="dashboard-h3">Statistiques de vos rendez-vous</h4>
+<div class="patient-count-container">
+    <div class="patient-count-card">
+      <h3 class="dashboard-h4">Nombre de patients vus aujourd'hui</h3>
+      <h4 class="patient-count"> <%= @patient_count %> </h4>
+    </div>
+     <div class="patient-count-card">
+      <h3 class="dashboard-h4">Chiffre d'affaire généré</h3>
+      <h4 class="patient-count"> <%= @patient_count * 25 %> € </h4>
+    </div>
+  </div>
+  </div>
+</div>
 </body>
 </html>
