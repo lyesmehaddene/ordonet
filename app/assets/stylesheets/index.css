@@ -1,3 +1,7 @@
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   display: flex;
@@ -7,59 +11,47 @@ body {
   margin: 0;
 }
 
-
 .patient-container {
   text-align: center;
   margin-left: 20px;
   margin-right: 20px;
 }
 
-
 h2 {
   color: #3575AB;
   padding: 10px;
   margin: 19px;
   margin-left: 300px;
-
 }
 
-
-#search-card {
-  padding: 20px;
-  margin-left: 300px;
-  margin-right: 20px;
+/* Style pour le conteneur #search-bar */
+#search-bar {
+  text-align: center; /* Centrer le contenu horizontalement */
+  margin-top: 20px; /* Espacement en haut du conteneur */
 }
 
-
-#search-card {
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-
-#search {
-  width: 56%;
-  padding: 10px;
-  border: 1px solid #ccc;
+/* Style pour le champ de texte */
+#search-bar input[type="text"] {
+  border: 2px solid #ccc;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 4px 2px;
   border-radius: 5px;
-  margin-left: 300px;
-  box-shadow: 1px;
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 53%;
 }
 
-/* #search-button {
-  margin-top: 10px;
-  width: 100%;
-  background-color: #007bff;
-  color: white;
+/* Style pour le bouton de soumission */
+#search-bar input[type="submit"] {
   border: none;
-  padding: 10px;
+  padding: 5px 10px;
+  margin: -10px -79px;
   border-radius: 5px;
-} */
+}
 
 
 #patient-info {
-
   margin-left: 284px;
   margin-right: 20px;
   padding: 20px;
@@ -71,6 +63,15 @@ h2 {
   padding-top: 20px;
 }
 
+.patient-card:hover{
+  background-color: #f5f5f5;
+}
+
 .small-text {
   font-size: 15px;
+}
+
+a.patient-link {
+  color: inherit;
+  text-decoration: none;
 }

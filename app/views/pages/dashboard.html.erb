@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag "dashboard" %>
+    <%= stylesheet_link_tag "dashboard.css" %>
     <title>Dashboard</title>
 </head>
 <body>
 <div id="main">
     <div class="dashboard">
-        <header class="dashboard-header">
             <h1>Dashboard</h1>
-        </header>
         <main class="dashboard-main">
 
             <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
             <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
             <%= stylesheet_link_tag "dashboard" %>
 
-            <div class="search-date" id="search-by-day">
-  <%= form_tag(search_by_day_patients_path, method: 'get') do %>
-    <%= text_field_tag :day, params[:day], placeholder: 'Recherche (dd/mm/yyyy)' %>
-    <%= submit_tag 'Search' %>
-  <% end %>
+    <div class="search-date" id="search-by-day">
+            <%= form_tag(search_by_day_patients_path, method: 'get') do %>
+            <%= text_field_tag :day, params[:day] || Date.today.strftime('%d/%m/%Y'), placeholder: "Recherche par jj/mm/aaaa" %>
+            <%= submit_tag 'Search' %>
+    <% end %>
 </div>
-
             <h4>Patients vus</h4>
 <div id="patient-cards-container">
   <% if @patients.present? %>

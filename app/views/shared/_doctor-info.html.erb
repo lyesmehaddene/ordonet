@@ -1,5 +1,5 @@
-<!-- _doctor-info.html.erb -->
+
 <div id="doctorInfo" class="doctor-info">
-  <span id="doctorName"><%="Dr.#{current_user.first_name.upcase} #{current_user.last_name}"%></span><br>
+  <span id="doctorName"><%="Dr. #{current_user.first_name.camelcase} #{current_user.last_name.upcase}"%></span><br>
   <span id="doctorSpecialty"><%=current_user.doctor.specialty%></span>
 </div>

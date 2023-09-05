@@ -4,6 +4,8 @@ class PatientsController < ApplicationController
   end
 
   def show
+    @patient = Patient.find(params[:id])
+    @appointment = @patient.appointments.last
   end
 
   def new
