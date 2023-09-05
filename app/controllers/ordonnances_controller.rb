@@ -68,7 +68,7 @@ class OrdonnancesController < ApplicationController
     png_io.rewind
 
     # Attacher l'image à l'ordonnance avec Active Storage
-    @ordonnance.photo.attach(io: png_io, filename: 'qrcode.png', content_type: 'image/png')
+    @ordonnance.photo.attach(io: png_io, filename: "qrcode-#{@ordonnance.ordonnance_number}.png", content_type: 'image/png')
 
     # Mettre à jour le flag is_used
     @ordonnance.update(qr_generated: true)
