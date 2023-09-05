@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_04_141536) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_05_125208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_141536) do
     t.integer "ordonnance_number"
     t.boolean "is_used", default: false
     t.boolean "qr_generated", default: false
+    t.boolean "pdf_generated", default: false
     t.index ["appointment_id"], name: "index_ordonnances_on_appointment_id"
   end
 

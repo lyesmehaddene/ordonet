@@ -34,7 +34,7 @@ class OrdonnancesController < ApplicationController
   def create_pdf
     @appointment = Appointment.find(params[:appointment_id])
     @ordonnance = Ordonnance.find(params[:id])
-
+    @ordonnance.update(pdf_generated: true)
     respond_to do |format|
       format.html
       format.pdf do

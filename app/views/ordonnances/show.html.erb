@@ -3,15 +3,18 @@
     <% if !@ordonnance.qr_generated %>
       <div class="container-heading">
       <%= link_to 'Valider l\'ordonnance', generate_qrcode_appointment_ordonnance_path(@appointment, @ordonnance, ordonnance_number: @ordonnance.ordonnance_number), remote: true, id: 'generate_qrcode_button', class: 'primary-button' %>
-          </div>
-    <% else @ordonnance.qr_generated %>
+      </div>
+    <% elsif @ordonnance.qr_generated && !@ordonnance.pdf_generated %>
      <div class="container-heading">
+      <%= link_to "Generate PDF", create_pdf_appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id, format: :pdf), class: "primary-button", target: "_blank" %>
+  </div>
+    <% else @ordonnance.qr_generated && @ordonnance.pdf_generated%>
+      <div class="container-heading">
       <button type="button" class="primary-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Envoyer l'ordonnance
     </button>
       </div>
     <% end %>
-
 </div>
 
 <div class="container-ordonnance">
@@ -59,8 +62,7 @@
     <p>Ajouter un médicament</p>
 </div>
   <% end %>
-<%= link_to "Generate PDF", create_pdf_appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id, format: :pdf), class: "btn btn-primary", target: "_blank" %>
-</div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -79,5 +81,5 @@
     </div>
   </div>
 </div>
-
+</div>
 <!-- Your existing HTML code here -->
