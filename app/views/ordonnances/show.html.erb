@@ -42,7 +42,9 @@
 
 <!-- Display the QR code using Turbo Frames -->
 <div class="ordonnance-qrcode">
-  <%= cl_image_tag @ordonnance.photo.key, height: 300, width: 400, crop: :fill %>
+  <% if @ordonnance.photo.attached? %>
+    <%= cl_image_tag @ordonnance.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
 <%# <%= turbo_frame_tag "qrcode_frame", target: "_top" do %>
   <!-- Display the QR code image here using the helper method -->
   <%#= image_tag(qr_code_image_path(@ordonnance)) %>
