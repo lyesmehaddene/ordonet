@@ -28,9 +28,9 @@ Rails.application.routes.draw do
 
   resources :patients do
 
-  collection do
-    get 'search'
-    get 'search_by_day'
+    collection do
+      get 'search'
+      get 'search_by_day'
+    end
   end
-end
 end
