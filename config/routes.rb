@@ -33,3 +33,4 @@ Rails.application.routes.draw do
     get 'search_by_day'
   end
 end
+end
