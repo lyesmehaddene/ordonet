@@ -4,6 +4,7 @@
   text-align: left;
   margin-bottom: 20px;
   margin-left: 30px ;
+  width: 800px;
 }
 
 .dashboard-header h1 {
@@ -49,14 +50,16 @@
 }
 
 .search-date input[type="submit"]{
-  border: none;
   padding: 5px 10px;
   margin: -10px -79px;
   border-radius: 5px;
+  border: 2px solid  #3575AB;;
+  background-color:  #3575AB;
+  color: white;
 }
 
 .search-date input[type="text"] {
-  border: 2px solid #ccc;
+  border: 2px solid  #3575AB;;
   padding: 5px 10px;
   text-decoration: none;
   margin: 4px 2px;
@@ -103,8 +106,4 @@
 
 .patient-count {
   color: #333333;
-}
-
-h4{
-  padding: 34px;
 }
