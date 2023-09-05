@@ -1,9 +1,9 @@
-<%= simple_form_for :appointment, url: appointment_path(@appointment), method: :patch, data: { turbo_frame: "reload" } do |f| %>
+<%= simple_form_for :appointment, url: appointment_path(@appointment), method: :patch do |f| %>
   <div class="form-inputs">
-    <%= f.input :content,label: "Commentaire",
+    <%= f.input :content, label: "Commentaire",
                         required: true,
                         autofocus: true,
-                        input_html: { autocomplete: "Ajouter un commentaire" }%>
+                        input_html: { autocomplete: "Ajouter un commentaire" } %>
   </div>
 
   <div class="form-actions">

@@ -45,7 +45,6 @@ class AppointmentsController < ApplicationController
         format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
-    redirect_to request.referrer
   end
 
   def new

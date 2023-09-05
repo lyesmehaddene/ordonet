@@ -38,15 +38,33 @@ class OrdonnancesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "#{current_user.first_name}_#{current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}", # Excluding ".pdf" extension.
-        template: "ordonnances/show",
-        layout: 'pdf',
-        disposition: :inline
-        # locals: { ordonnance: @ordonnance }
+        # Generate PDF content
+        pdf_content = WickedPdf.new.pdf_from_string(
+          render_to_string(
+            template: "ordonnances/show",
+            layout: 'pdf',
+            locals: { ordonnance: @ordonnance }
+          )
+        )
+
+        # Save the PDF content to a StringIO object
+        pdf_io = StringIO.new(pdf_content)
+
+        # Attach the PDF to the Ordonnance using Active Storage
+        @ordonnance.pdf.attach(
+          io: pdf_io,
+          filename: "#{current_user.first_name}_#{current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}.pdf",
+          content_type: 'application/pdf'
+        )
+
+        # Render the PDF inline
+        send_data pdf_content,
+                  filename: "#{current_user.first_name}_#{current_user.last_name}-#{@appointment.patient.user.first_name}_#{@appointment.patient.user.last_name}_#{Date.today}.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
       end
     end
   end
-
 
   def generate_qrcode
     @ordonnance = Ordonnance.find(params[:id])
@@ -80,42 +98,6 @@ class OrdonnancesController < ApplicationController
     end
   end
 
-
-  # def generate_qrcode
-  #   @ordonnance = Ordonnance.find(params[:id])
-  #   # Assuming you have an @ordonnance object
-  #   qrcode = RQRCode::QRCode.new(@ordonnance.to_json)
-  #   qrcode_as_svg = qrcode.as_png(
-  #     offset: 0,
-  #     color: 'black',
-  #     module_size: 6,
-  #     standalone: true,
-  #     color_mode: ChunkyPNG::COLOR_GRAYSCALE,
-  #     size: 150
-  #   )
-
-  #   # Save the QR code as an image file
-  #   # File.open("./app/assets/images/qrcode-#{@ordonnance.ordonnance_number}.png", 'wb') do |file|
-  #   #   file.write(qrcode_as_svg)
-  #   # end
-
-
-  #   # file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
-  #   # article = Article.new(title: "NES", body: "A great console")
-  #   # article.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  #   # article.save
-
-  #   Cloudinary::Uploader.upload(qrcode_as_svg)
-
-  #   # Update the is_used flag
-  #   @ordonnance.update(qr_generated: true)
-
-  #   # Redirect or render as needed
-  #   respond_to do |format|
-  #     format.html { redirect_to appointment_ordonnance_path(appointment_id: @ordonnance.appointment.id, id: @ordonnance.id) }
-  #     format.json { render json: { qr_code_url: view_context.image_url("qrcode-#{ordonnance_number}.png") } }
-  #   end
-  # end
 
   private
 
