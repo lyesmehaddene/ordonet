@@ -64,15 +64,24 @@
           <% else %>
           <h5> <%= "✒️ #{consultation.content}"%></h5>
           <% end %>
+          <p style="color: #6B6B6B;"><%= "Rendez-vous effectué le : #{consultation.created_at.strftime('%d-%m-%Y')}" %></p>
         </div>
-        <div class="pdf-consult">
-          <div>
-          <%# <%= link_to "Voir le PDF", consultation.ordonnance.pdf.url, target: "_blank" do%>
-          <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
-          <i class="fa-solid fa-download fa-l" style="color: #e5e5e5;"></i>
-          <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+          <div class="pdf-consult">
+            <div>
+              <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
+              <% if consultation.ordonnance_id.present? %>
+                <% if consultation.ordonnance.pdf.attached? %>
+                  <%= link_to cl_path(consultation.ordonnance.pdf.key), target: '_blank' do %>
+                    <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+                  <% end %>
+                <% else %>
+                  <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+                <% end %>
+              <% else %>
+                <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+              <% end %>
+            </div>
           </div>
-        </div>
       </div>
     <div id="editForm_<%= consultation.id %>" style="display:none;">
       <%= render partial: 'appointments/edit_form', locals: { appointment: consultation } %>
@@ -116,14 +125,38 @@
           <h5> <%= "✒️ #{consultation.content}"%></h5>
         </div>
         <div class="pdf-consult">
-          <div>
-          <%# <%= link_to "Voir le PDF", consultation.ordonnance.pdf.url, target: "_blank" do%>
+        <div>
           <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
-          <i class="fa-solid fa-download fa-l" style="color: #e5e5e5;"></i>
-          <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
-          </div>
+          <% if consultation.ordonnance_id.present? %>
+            <% if consultation.ordonnance.pdf.attached? %>
+              <%= cl_image_tag consultation.ordonnance.pdf.key,
+                              height: 300,
+                              width: 400,
+                              crop: :fill,
+                              class: 'fa-solid fa-download fa-l',
+                              style: 'color: #e5e5e5;'
+              %>
+            <% end %>
+          <% else %>
+            <i class="fa-solid fa-download fa-l" style="color: #e5e5e5;"></i>
+          <% end %>
+
+          <% if consultation.ordonnance_id.present? %>
+            <% if consultation.ordonnance.pdf.attached? %>
+              <%= cl_image_tag consultation.ordonnance.pdf.key,
+                              height: 300,
+                              width: 400,
+                              crop: :fill,
+                              class: 'fa-regular fa-eye fa-l',
+                              style: 'color: #e5e5e5;'
+              %>
+            <% end %>
+          <% else %>
+            <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+          <% end %>
         </div>
       </div>
+    </div>
     <%end%>
     <%end%>
     </div>
