@@ -35,7 +35,7 @@
           <% end %>
         </div>
         <div class="ordonnance-qrcode">
-          <img src="<%= Rails.root.join('app', 'assets', 'images', qr_code_image_path(@ordonnance)).to_s %>" alt="Mon Image">
+          <%= cl_image_tag @ordonnance.photo.key, height: 300, width: 400, crop: :fill %>
         </div>
 
       </div>
