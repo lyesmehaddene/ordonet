@@ -8,10 +8,17 @@ class AppointmentsController < ApplicationController
   def show; end
 
   def create
-    @appointment = Appointment.new()
+    @appointment = Appointment.new
     @appointment.patient = get_patient_id
     @appointment.doctor = current_user.doctor
     @appointment.appointment_date = Date.today
+
+    if @appointment.patient.nil?
+      @error_message = 'Patient introuvable'
+      render :new, status: :unprocessable_entity
+      return
+    end
+
     if params[:commit] == 'Confirmer le nouveau rendez-vous'
       if @appointment.save
         redirect_to appointment_path(@appointment)
@@ -31,7 +38,6 @@ class AppointmentsController < ApplicationController
     respond_to do |format|
       if @appointment.update(appointment_params)
         format.html { redirect_to request.referrer, notice: "Appointment was successfully updated." }
-        # format.html { render layout: false }
         format.json { render json: @appointment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,6 +54,18 @@ class AppointmentsController < ApplicationController
 
   private
 
+  def create_new_patient
+    @user_patient = User.new
+    @user_patient.first_name = params["appointments"]["first_name"]
+    @user_patient.last_name = params["appointments"]["last_name"]
+    @user_patient.email = params["appointments"]["email"]
+    @user_patient.phone_number = params["appointments"]["phone_number"]
+    @user_patient.save
+    @patient = Patient.new
+    @patient.user = @user_patient
+    @patient.save
+  end
+
   def appointment_params
     params.require(:appointment).permit(:patient_id, :doctor_id)
   end
@@ -60,6 +78,12 @@ class AppointmentsController < ApplicationController
     @patient_first_name = params["appointments"]["first_name"]
     @patient_last_name = params["appointments"]["last_name"]
     @user_patient = User.find_by(first_name: @patient_first_name, last_name: @patient_last_name)
-    Patient.find_by(user_id: @user_patient.id)
+
+    if @user_patient
+      patient = Patient.find_by(user_id: @user_patient.id)
+      return patient
+    else
+      return nil
+    end
   end
 end
