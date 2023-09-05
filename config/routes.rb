@@ -27,8 +27,9 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
 
   resources :patients do
-    collection do
-      get 'search'
-    end
+
+  collection do
+    get 'search'
+    get 'search_by_day'
   end
 end

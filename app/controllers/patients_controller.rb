@@ -32,4 +32,19 @@ class PatientsController < ApplicationController
     end
     render 'index'
   end
+
+  def search_by_day
+    if params[:day].present?
+      search_date = Date.strptime(params[:day], "%d/%m/%Y")
+      @patients = current_user.doctor.patients.joins(:appointments)
+                  .where('DATE(appointments.appointment_date) = ?', search_date)
+                  .distinct
+      @patient_count = @patients.count
+    else
+      @patients = current_user.doctor.patients.distinct
+      @patient_count = 0
+    end
+
+    render 'pages/dashboard'
+  end
 end

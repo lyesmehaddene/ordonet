@@ -14,48 +14,44 @@
         </header>
         <main class="dashboard-main">
 
-            <div class="calendar">
-                <input type="date" id="selectedDate">
-            </div>
+            <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+            <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+            <%= stylesheet_link_tag "dashboard" %>
+
+            <div class="search-date" id="search-by-day">
+  <%= form_tag(search_by_day_patients_path, method: 'get') do %>
+    <%= text_field_tag :day, params[:day], placeholder: 'Recherche (dd/mm/yyyy)' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+</div>
+
             <h4>Patients vus</h4>
-            <div class="patient-cards" id="patientCards">
-            </div>
-                <div class="patient-count-container">
-                Nombre de patients vus : <span class="patient-count" id="patientCount">0</span>
+<div id="patient-cards-container">
+  <% if @patients.present? %>
+    <% @patients.each do |patient| %>
+      <div class="patient-card">
+        <h3><%= "#{patient.user.first_name} #{patient.user.last_name.upcase}" %></h3>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Pas de patients trouvés</p>
+  <% end %>
+</div>
+
+
+        </main>
+    </div>
+</body>
+</html>
+<div id="patient-count-container">
+  <div class="patient-count-text">Nombre de patients vus aujourd'hui :</div>
+  <span class="patient-count" id="patientCount"><%= @patient_count %></span>
+</div>
+
+
             </div>
         </main>
     </div>
-    <script>
-        const selectedDateInput = document.getElementById('selectedDate');
-        const patientCardsContainer = document.getElementById('patientCards');
-
-        selectedDateInput.addEventListener('change', updatePatientCards);
-
-        function updatePatientCards() {
-            const selectedDate = selectedDateInput.value;
-            // Ici, je pourrais ajouter la logique pour récupérer les patients de la date sélectionnée ma votre source de données.
-            // Je pourrais utiliser une API pour obtenir les données des patients.??
-
-            // Supprimer les anciennes cartes de patients
-            patientCardsContainer.innerHTML = '';
-
-            // Exemple de données de patients (à remplacer par vos propres données)
-            const patients = [
-                { firstName: 'Josiane', lastName: 'NETTE' },
-            ];
-
-            // Ajouter les nouvelles cartes de patients
-            patients.forEach(patient => {
-                const card = document.createElement('div');
-                card.classList.add('patient-card');
-                card.textContent = `${patient.firstName} ${patient.lastName}`;
-                patientCardsContainer.appendChild(card);
-            });
-        }
-
-        // Mettre à jour les cartes de patients au chargement de la page
-        updatePatientCards();
-    </script>
         </div>
 </body>
 </html>
