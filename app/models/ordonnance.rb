@@ -1,5 +1,6 @@
 class Ordonnance < ApplicationRecord
   has_one_attached :photo
+  has_one_attached :pdf
 
   belongs_to :appointment
 
