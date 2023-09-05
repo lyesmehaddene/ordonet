@@ -21,6 +21,8 @@ gem "puma", "~> 5.0"
 
 gem 'wicked_pdf'
 
+gem "wkhtmltopdf-heroku"
+
 gem 'wkhtmltopdf-binary'
 
 gem "simple_form"

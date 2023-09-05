@@ -57,7 +57,7 @@
     <p>Ajouter un médicament</p>
 </div>
   <% end %>
-<%= link_to "Generate PDF", create_pdf_appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id, format: :pdf), class: "btn btn-primary" %>
+<%= link_to "Generate PDF", create_pdf_appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id, format: :pdf), class: "btn btn-primary", target: "_blank" %>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
