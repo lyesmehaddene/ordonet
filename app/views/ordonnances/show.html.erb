@@ -4,15 +4,12 @@
       <div class="container-heading">
       <%= link_to 'Valider l\'ordonnance', generate_qrcode_appointment_ordonnance_path(@appointment, @ordonnance, ordonnance_number: @ordonnance.ordonnance_number), remote: true, id: 'generate_qrcode_button', class: 'primary-button' %>
       </div>
-    <% elsif @ordonnance.qr_generated && !@ordonnance.pdf_generated %>
-     <div class="container-heading">
-      <%= link_to "Generate PDF", create_pdf_appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id, format: :pdf), class: "primary-button", target: "_blank" %>
-  </div>
-    <% else @ordonnance.qr_generated && @ordonnance.pdf_generated%>
+    <% elsif @ordonnance.qr_generated %>
       <div class="container-heading">
-      <button type="button" class="primary-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Envoyer l'ordonnance
-    </button>
+          <%= link_to "Generate PDF", create_pdf_appointment_ordonnance_path(appointment_id: @appointment.id, id: @ordonnance.id, format: :pdf), class: "primary-button", target: "_blank" %>
+          <button type="button" class="btn primary-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Envoyer l'ordonnance
+        </button>
       </div>
     <% end %>
 </div>
@@ -72,7 +69,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p><strong>Email:</strong> <%= @appointment.patient.user.email %></p>
+        <label for="emailInput"><strong>Email:</strong></label>
+        <input type="email" id="emailInput" name="emailInput" value="<%= @appointment.patient.user.email %>">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
