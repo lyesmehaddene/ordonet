@@ -69,7 +69,7 @@
           <div class="pdf-consult">
             <div>
               <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
-              <% if consultation.ordonnance_id.present? %>
+              <% if consultation.ordonnance.present? %>
                 <% if consultation.ordonnance.pdf.attached? %>
                   <%= link_to cl_path(consultation.ordonnance.pdf.key), target: '_blank' do %>
                     <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
@@ -95,24 +95,24 @@
   <% prev_month = nil %>
 <div id="all-consults" class="consultation-content" style="display: none;">
   <!-- Contenu de Toutes les consultations -->
-  <%@consultations = Appointment.where(patient_id: @appointment.patient.id).order(created_at: :desc)%>
+  <%@consultations = Appointment.where(patient_id: @appointment.patient.id).order(appointment_date: :desc)%>
   <% if @consultations.empty? %>
     <p>No data</p>
   <% else %>
   <%@consultations.each do |consultation|%>
     <div class="detail-consult">
       <div class="year_month">
-        <% current_year = consultation.created_at.strftime("%Y") %>
-        <% current_month = consultation.created_at.strftime("%B") %>
+        <% current_year = consultation.appointment_date.strftime("%Y") %>
+        <% current_month = consultation.appointment_date.strftime("%B") %>
         <% if current_year != prev_year %>
           <div class="year">
-          <% year = consultation.created_at.strftime("%Y") %>
+          <% year = consultation.appointment_date.strftime("%Y") %>
           <p><%=year%></p>
         <%end%>
         </div>
         <% if current_month != prev_month %>
           <div class="month">
-          <% month = consultation.created_at.strftime("%B") %>
+          <% month = consultation.appointment_date.strftime("%B") %>
           <p><%=month%></p>
         </div>
         <% end %>
@@ -123,39 +123,29 @@
         <div class="presentation-consult">
           <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
           <h5> <%= "✒️ #{consultation.content}"%></h5>
+          <p style="color: #6B6B6B;">
+            <%= "Rendez-vous effectué le : #{consultation.appointment_date.strftime('%d-%m-%Y')}" %>
+          </p>
         </div>
-        <div class="pdf-consult">
-        <div>
-          <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
-          <% if consultation.ordonnance_id.present? %>
-            <% if consultation.ordonnance.pdf.attached? %>
-              <%= cl_image_tag consultation.ordonnance.pdf.key,
-                              height: 300,
-                              width: 400,
-                              crop: :fill,
-                              class: 'fa-solid fa-download fa-l',
-                              style: 'color: #e5e5e5;'
-              %>
-            <% end %>
-          <% else %>
-            <i class="fa-solid fa-download fa-l" style="color: #e5e5e5;"></i>
-          <% end %>
-
-          <% if consultation.ordonnance_id.present? %>
-            <% if consultation.ordonnance.pdf.attached? %>
-              <%= cl_image_tag consultation.ordonnance.pdf.key,
-                              height: 300,
-                              width: 400,
-                              crop: :fill,
-                              class: 'fa-regular fa-eye fa-l',
-                              style: 'color: #e5e5e5;'
-              %>
-            <% end %>
-          <% else %>
-            <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
-          <% end %>
-        </div>
+      <div class="pdf-consult">
+            <div>
+              <i class="fa-solid fa-file-pdf fa-2xl" style="color: #3575aa;"></i>
+              <% if consultation.ordonnance.present? %>
+                <% if consultation.ordonnance.pdf.attached? %>
+                  <%= link_to cl_path(consultation.ordonnance.pdf.key), target: '_blank' do %>
+                    <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+                  <% end %>
+                <% else %>
+                  <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+                <% end %>
+              <% else %>
+                <i class="fa-regular fa-eye fa-l" style="color: #e5e5e5;"></i>
+              <% end %>
+            </div>
+          </div>
       </div>
+    <div id="editForm_<%= consultation.id %>" style="display:none;">
+      <%= render partial: 'appointments/edit_form', locals: { appointment: consultation } %>
     </div>
     <%end%>
     <%end%>
