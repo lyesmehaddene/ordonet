@@ -16,7 +16,6 @@ class OrdonnancesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-    @appointment.ordonnance_id = @ordonnance.id
     @appointment.save
   end
 
