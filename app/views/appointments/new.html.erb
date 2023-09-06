@@ -2,45 +2,45 @@
 <div class="container-form pt-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
+      <%= simple_form_for :appointments, url: appointments_path, method: :post do |f| %>
+        <div class="form-inputs appointment-container p-3">
+          <% if @error_message %>
+            <div class="alert alert-danger">
+              <%= @error_message %>
+            </div>
+          <% end %>
 
-
-
-<%= simple_form_for :appointments, url: appointments_path, method: :post do |f|%>
-<div class="form-inputs appointment-container p-3">
-  <h3 class="appointment-h3">Le patient est déjà enregistré</h3>
-    <div class="row">
-      <div class="col-6">
-         <%= f.input :last_name,
+          <h3 class="appointment-h3">Le patient est déjà enregistré</h3>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :last_name,
                 label: false,
                 required: true,
                 autofocus: true,
                 placeholder: "Nom",
                 input_html: { autocomplete: "last-name" },
-                class: "appointment-input p-4"%>
-                </div>
-      <div class="col-6">
-        <%= f.input :first_name,
+                class: "appointment-input p-4" %>
+            </div>
+            <div class="col-6">
+              <%= f.input :first_name,
                 label: false,
                 placeholder: "Prénom",
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "first-name" }, class: 'appointment-input m-4'%>
-                </div>
-  </div>
+                input_html: { autocomplete: "first-name" }, class: 'appointment-input m-4' %>
+            </div>
+          </div>
 
-  <div class="form-actions form-center">
-    <%= f.button :submit, "Confirmer le nouveau rendez-vous", class: 'register-button'%>
-  </div>
-    <h3 class="appointment-h3">Le patient n'est pas encore enregistré</h3>
-    <div class="form-actions form-center">
-    <%= f.button :submit, "Créer un nouveau patient", class: 'register-button-second'%>
-  </div>
-  </div>
+          <div class="form-actions form-center">
+            <%= f.button :submit, "Confirmer le nouveau rendez-vous", class: 'register-button' %>
+          </div>
+
+          <h3 class="appointment-h3">Le patient n'est pas encore enregistré</h3>
+          <div class="form-actions form-center">
+            <%= f.button :submit, "Créer un nouveau patient", class: 'register-button-second' %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  </div>
-
-<% end %>
-
-  </div>
   </div>
 </div>
