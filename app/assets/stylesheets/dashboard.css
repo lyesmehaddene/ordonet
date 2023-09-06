@@ -79,15 +79,7 @@
   margin-left: 20px;
 }
 
-.patient-count-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  flex: 1;
-  grid-gap: 34px;
-  justify-items: center;
-  margin-bottom: 20px;
-  margin-left: 39px;
-}
+
 
 .patient-count-text {
   flex-grow: 1;
