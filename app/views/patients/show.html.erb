@@ -4,7 +4,7 @@
   <div class="head-rdv">
     <div class="titles">
       <h1 class="appointment-h1" id="rdv">Mes Patients</h1>
-      <h2 id="patient_name"><strong>Patient(e):</strong> <%= "#{@appointment.patient.user.first_name} #{@appointment.patient.user.last_name.upcase}" %></h2>
+      <h2 id="patient_name"><strong>Patient(e):</strong> <%= "#{@patient.user.first_name} #{@patient.user.last_name.upcase}" %></h2>
     </div>
   </div>
 </div>
@@ -24,7 +24,7 @@
   <% prev_month = nil %>
 
 <div id="my-consults" class="consultation-content">
-  <%@myConsults = Appointment.where(patient_id: @appointment.patient.id, doctor_id: current_user.doctor.id)%>
+  <%@myConsults = Appointment.where(patient_id: @patient.id, doctor_id: current_user.doctor.id)%>
   <% if @myConsults.empty? %>
     <p>No data</p>
   <% else %>
@@ -51,14 +51,7 @@
       <div class="card-consult">
         <div class="presentation-consult">
           <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
-          <% if consultation.content.nil? %>
-            <%= link_to edit_appointment_path(@appointment), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
-              <p>✒️ Ajouter une note</p>
-            <% end %>
-            <%#= link_to "✒️ Ajouter une note", edit_appointment_path(@appointment), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' %>
-          <% else %>
           <h5> <%= "✒️ #{consultation.content}"%></h5>
-          <% end %>
         </div>
         <div class="pdf-consult">
           <div>
@@ -69,9 +62,6 @@
           </div>
         </div>
       </div>
-    <div id="editForm_<%= consultation.id %>" style="display:none;">
-      <%= render partial: 'appointments/edit_form', locals: { appointment: consultation } %>
-    </div>
     <%end%>
     <%end%>
     </div>
@@ -81,7 +71,7 @@
   <% prev_month = nil %>
 <div id="all-consults" class="consultation-content" style="display: none;">
   <!-- Contenu de Toutes les consultations -->
-  <%@consultations = Appointment.where(patient_id: @appointment.patient.id)%>
+  <%@consultations = Appointment.where(patient_id: @patient.id)%>
   <% if @consultations.empty? %>
     <p>No data</p>
   <% else %>

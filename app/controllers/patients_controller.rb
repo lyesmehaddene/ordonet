@@ -4,7 +4,10 @@ class PatientsController < ApplicationController
   end
 
   def show
+    @patient = Patient.find(params[:id])
+    @appointments = @patient.appointments
   end
+
 
   def new
     @patient = Patient.new
