@@ -57,7 +57,7 @@
         <div class="presentation-consult">
           <p class="doctor-name d-inline"><strong><%="Dr.#{consultation.doctor.user.last_name.upcase} #{consultation.doctor.user.first_name}: "%></strong> <%="#{consultation.doctor.specialty}"%></p>
           <% if consultation.content.nil? %>
-            <%= link_to edit_appointment_path(@appointment), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
+            <%= link_to edit_appointment_path(consultation), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' do %>
               <p>✒️ Ajouter une note</p>
             <% end %>
             <%#= link_to "✒️ Ajouter une note", edit_appointment_path(@appointment), data: { turbo_frame: "remote_modal" }, class: 'decoration-none' %>
