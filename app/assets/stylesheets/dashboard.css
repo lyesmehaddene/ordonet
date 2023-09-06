@@ -4,6 +4,7 @@
   text-align: left;
   margin-bottom: 20px;
   margin-left: 30px ;
+  width: 800px;
 }
 
 .dashboard-header h1 {
@@ -20,7 +21,7 @@
 }
 
 
-#patient-cards-container {
+.patient-cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-gap: 34px;
@@ -49,14 +50,16 @@
 }
 
 .search-date input[type="submit"]{
-  border: none;
   padding: 5px 10px;
   margin: -10px -79px;
   border-radius: 5px;
+  border: 2px solid  #3575AB;;
+  background-color:  #3575AB;
+  color: white;
 }
 
 .search-date input[type="text"] {
-  border: 2px solid #ccc;
+  border: 2px solid  #3575AB;;
   padding: 5px 10px;
   text-decoration: none;
   margin: 4px 2px;
@@ -66,32 +69,23 @@
 
 }
 
-
 .patient-card:hover {
   transform: scale(1.05);
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  border: #3575AB;
 }
 
 .dashboard {
   margin-left: 20px;
 }
 
-#patient-count-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  height: 30px;
-  margin-left: 140px;
-  margin-top: -35px;
-
+.patient-count-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 34px;
+  justify-items: center;
+  margin-bottom: 20px;
+  margin-left: 39px;
 }
 
 .patient-count-text {
@@ -101,10 +95,18 @@
   margin-right: 10px;
 }
 
-.patient-count {
-  color: #333333;
-}
-
-h4{
-  padding: 34px;
-}
+/* .patient-count-card {
+    width: fit-content;
+    height: fit-content;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
