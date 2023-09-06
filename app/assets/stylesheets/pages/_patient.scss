@@ -15,19 +15,18 @@ body {
 h2 {
   color: #3575AB;
   padding: 10px;
-  margin: 19px;
-  margin-left: 300px;
+  margin: 9px;
+  margin-left: 88px;
+  font-size: 20px;
 }
 
-/* Style pour le conteneur #search-bar */
 #search-bar {
-  text-align: center; /* Centrer le contenu horizontalement */
-  margin-top: 20px; /* Espacement en haut du conteneur */
+  text-align: center;
+  margin-top: 20px;
 }
 
-/* Style pour le champ de texte */
+
 #search-bar input[type="text"] {
-  border: 2px solid #ccc;
   padding: 5px 10px;
   text-decoration: none;
   margin: 4px 2px;
@@ -35,14 +34,17 @@ h2 {
   margin-top: 20px;
   margin-left: 10px;
   width: 53%;
+  border: 2px solid  #3575AB;
+  margin-left: 56px;
 }
 
-/* Style pour le bouton de soumission */
 #search-bar input[type="submit"] {
-  border: none;
   padding: 5px 10px;
   margin: -10px -79px;
   border-radius: 5px;
+  border: 2px solid  #3575AB;;
+  background-color:  #3575AB;
+  color: white;
 }
 
 
@@ -52,10 +54,18 @@ h2 {
   padding: 20px;
 }
 
+h3{
+  font-size: 23px;
+}
+
 .patient-card {
-  border-top: 1px solid #ccc;
-  margin-top: 20px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 7px;
   padding-top: 20px;
+  font-size: 13px;
+  margin-left: 20px;
+  width: 81%;
+  
 }
 
 .patient-card:hover{
