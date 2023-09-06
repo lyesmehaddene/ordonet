@@ -69,15 +69,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label for="emailInput"><strong>Email:</strong></label>
-        <input type="email" id="emailInput" name="emailInput" value="<%= @appointment.patient.user.email %>">
+        <form method="post" action="<%= send_email_appointment_ordonnance_path %>" id="sendEmailForm">
+          <label for="emailInput"><strong>Email:</strong></label>
+          <input type="email" id="emailInput" name="email" value="<%= @appointment.patient.user.email %>">
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-        <button type="button" class="btn btn-primary">Envoyer l'email</button>
+        <button type="submit" form="sendEmailForm" class="btn btn-primary">Envoyer l'email</button>
       </div>
     </div>
   </div>
 </div>
+
 </div>
-<!-- Your existing HTML code here -->

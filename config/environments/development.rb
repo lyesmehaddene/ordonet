@@ -38,14 +38,20 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address: 'send.smtp.mailtrap.io',
-  port: 587,
-  domain: 'yourdomain',
-  user_name:'api',
-  password:'********059a',
-  authentication:'plain',
-  enable_starttls_auto: true
-}
+    :user_name => '70d9416c52fb56',
+    :password => 'ce1ee5fed4c993',
+    :address => 'sandbox.smtp.mailtrap.io',
+    :host => 'sandbox.smtp.mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5
+  }
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+#   config.action_mailer.delivery_method = :mailtrap
+#   config.action_mailer.mailtrap_settings = {
+#   api_key: 'ce1ee5fed4c993'
+# }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

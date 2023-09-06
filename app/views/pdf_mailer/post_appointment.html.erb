@@ -1,0 +1,12 @@
+<h1>Votre ordonnance</h1>
+
+<p>
+  <%= @greeting %>
+</p>
+<p>
+  Suite à votre Rendez-vous du <%= @appointment.created_at.strftime("%d/%m/%Y") %> avec le Docteur <%= @ordonnance.doctor.user.last_name %>, veuillez trouver ci-joint votre ordonnance.
+</p>
+<% attachments['ordonnance.pdf'] = File.read('app/assets/images/Lyes_Mehaddene-Maudie_Marvin_2023-09-06.pdf') %>
+<p>
+  Cordialement,
+</p>

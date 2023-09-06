@@ -29,6 +29,8 @@ gem "simple_form"
 
 gem 'devise', '~> 4.9'
 
+gem 'mailtrap'
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
