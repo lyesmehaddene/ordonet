@@ -3,10 +3,11 @@ class PatientsController < ApplicationController
     @patients = current_user.doctor.patients.distinct
   end
 
-  def show
-    @patient = Patient.find(params[:id])
-    @appointments = @patient.appointments
-  end
+    def show
+      @patient = Patient.find(params[:id])
+      @appointment = @patient.appointments.last
+    end
+
 
 
   def new
@@ -37,17 +38,22 @@ class PatientsController < ApplicationController
   end
 
   def search_by_day
-    if params[:day].present?
+  if params[:day].present?
+    begin
       search_date = Date.strptime(params[:day], "%d/%m/%Y")
-    else
-      search_date = Date.current
+    rescue ArgumentError
+      flash[:error] = 'Invalid date format. Please use the format dd/mm/yyyy.'
+      return
     end
+  else
+    search_date = Date.current
+  end
 
-    @patients = current_user.doctor.patients.joins(:appointments)
-                .where('DATE(appointments.appointment_date) = ?', search_date)
-                .distinct
-    @patient_count = @patients.count
+  @patients = current_user.doctor.patients.joins(:appointments)
+              .where('DATE(appointments.appointment_date) = ?', search_date)
+              .distinct
+  @patient_count = @patients.count
 
-    render 'pages/dashboard'
+  render 'pages/dashboard'
   end
 end

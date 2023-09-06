@@ -5,7 +5,8 @@ class AppointmentsController < ApplicationController
     @appointments = Appointment.find_by(patient: params[:patient_id])
   end
 
-  def show; end
+  def show
+  end
 
   def create
     @appointment = Appointment.new

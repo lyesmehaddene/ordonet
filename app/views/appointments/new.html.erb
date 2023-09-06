@@ -37,7 +37,7 @@
 
           <h3 class="appointment-h3">Le patient n'est pas encore enregistré</h3>
           <div class="form-actions form-center">
-            <%= f.button :submit, "Créer un nouveau patient", class: 'register-button-second' %>
+            <%= link_to "Créer un nouveau patient", new_patient_path, class: 'register-button-second' %>
           </div>
         </div>
       <% end %>
