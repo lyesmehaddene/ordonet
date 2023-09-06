@@ -8,17 +8,51 @@
 puts 'initializing seed'
 require 'faker'
 
-puts 'Cleaning database...'
-OrdoMedication.destroy_all
+puts 'Destroying all...'
 Medication.destroy_all
+OrdoMedication.destroy_all
 Ordonnance.destroy_all
 Appointment.destroy_all
-Patient.destroy_all
 Doctor.destroy_all
+Patient.destroy_all
 User.destroy_all
 
+doctor_ids = []
+patient_ids = []
+appointment_ids = []
+
+all_medications = [
+  "Aspirine", "Lipitor", "Plavix", "Norvasc", "Coumadin",  # Cardiologue
+  "Accutane", "Hydrocortisone", "Retin-A", "Benadryl", "Elidel",  # Dermatologue
+  "OxyContin", "Ibuprofène", "Zofran", "Vicodin", "Morphine",  # Chirurgien
+  "Amoxicilline", "Tylenol", "Zithromax", "Prozac", "Cymbalta"  # Généraliste
+]
+
+comments_by_specialty = {
+  "Cardiologue" => [
+    "Consultation initiale pour des épisodes récurrents de douleurs thoraciques. Je recommande un ECG et un échocardiogramme pour un diagnostic plus précis.",
+    "Suivi post-opératoire de la chirurgie de pontage aorto-coronarien. Le patient montre des signes de récupération satisfaisante. Aucune complication observée.",
+    "Examen de routine effectué. Aucun signe d'arythmie ou d'autres problèmes cardiaques. Poursuite du traitement médicamenteux actuel conseillée."
+  ],
+  "Dermatologue" => [
+    "Consultation pour des symptômes persistants d'eczéma. Prescription d'une crème stéroïde topique et suivi dans 2 semaines pour évaluer l'efficacité.",
+    "Un grain de beauté suspect sur le dos a été observé. Biopsie cutanée réalisée pour écarter tout risque de mélanome.",
+    "Consultation pour acné sévère. Prescription de Doxycycline et recommandation d'un nettoyant facial doux. Suivi dans un mois."
+  ],
+  "Chirurgien" => [
+    "Consultation préopératoire réalisée pour une hernie inguinale. Le patient est éligible pour une intervention chirurgicale. Planification de la chirurgie dans les deux semaines à venir.",
+    "Suivi post-opératoire après ablation de la vésicule biliaire. Aucune complication post-chirurgicale notée. Les sutures seront retirées la semaine prochaine.",
+    "Discussion avec le patient sur les options de traitement pour une appendicite aiguë. Une appendicectomie est recommandée."
+  ],
+  "Généraliste" => [
+    "Consultation pour symptômes grippaux. Prescription d'antiviraux et repos recommandé. Si les symptômes persistent, envisager des tests supplémentaires.",
+    "Examen physique annuel réalisé. Aucune anomalie détectée. Vaccinations à jour et conseils sur une alimentation équilibrée fournis.",
+    "Consultation pour des épisodes de fatigue et de faiblesse. Des tests sanguins ont été recommandés pour évaluer les niveaux de fer et les fonctions thyroïdiennes."
+  ]
+}
+
 puts 'Creating users...'
-15.times do |i|
+40.times do |i|
   user = User.new(
     email: "toto#{i}@gmail.com",
     first_name: Faker::Name.first_name,
@@ -30,54 +64,67 @@ puts 'Creating users...'
 end
 
 puts 'Creating doctors...'
-count = 0
-5.times do
+count = (User.last.id - 40)
+20.times do
   count += 1
-  Doctor.create!(
+  doctor = Doctor.create!(
     user_id: User.find(count).id,
-    specialty: Faker::IndustrySegments.industry,
-    accreditation_number: Faker::Number.number(digits: 10)
+    specialty: ["Cardiologue", "Dermatologue", "Chirurgien", "Généraliste"].sample,
+    accreditation_number: Faker::Number.number(digits: 10),
   )
+  doctor_ids << doctor.id
 end
 
 p 'Creating patients...'
-5.times do
-  Patient.create!(
-    user_id: count += 1
+20.times do
+  count += 1
+  patient = Patient.create!(
+    user_id: count,
   )
+  patient_ids << patient.id
 end
 
 puts 'Creating appointments...'
-10.times do |_i|
-  Appointment.create!(
-    doctor_id: Faker::Number.between(from: 1, to: 5),
-    patient_id: Faker::Number.between(from: 1, to: 5),
-    appointment_date: Faker::Date.forward(days: 23),
-    content: Faker::Lorem.paragraph(sentence_count: 2)
+50.times do |_i|
+  doctor_id = doctor_ids.sample
+  patient_id = patient_ids.sample
+  appointment_date = Faker::Date.forward(days: 23)
+
+  appointment = Appointment.new(
+    doctor_id: doctor_id,
+    patient_id: patient_id,
+    appointment_date: appointment_date
   )
+
+  specialty = Doctor.find(doctor_id).specialty
+
+  appointment.content = comments_by_specialty[specialty].sample
+  appointment.save!
+  appointment_ids << appointment.id
 end
 
 puts 'Creating ordonnances...'
 10.times do
+  appointment_id = appointment_ids.sample
   Ordonnance.create!(
     is_signed: true,
     is_sent: true,
-    appointment_id: Faker::Number.between(from: 1, to: 10)
+    appointment_id: appointment_id
   )
 end
 
 puts 'Creating medications...'
-10.times do
+all_medications.each do |medication_name|
   Medication.create!(
-    name: Faker::Science.tool,
+    name: medication_name,
     description: Faker::Food.description
   )
 end
 
-puts 'Creating ordo_medications...'
-40.times do
-  OrdoMedication.create!(
-    ordonnance_id: Faker::Number.between(from: 1, to: 10),
-    medication_id: Faker::Number.between(from: 1, to: 10)
-  )
-end
+# puts 'Creating ordo_medications...'
+# 40.times do
+#   OrdoMedication.create!(
+#     ordonnance_id: Faker::Number.between(from: 1, to: 10),
+#     medication_id: Faker::Number.between(from: 1, to: 10)
+#   )
+# end
