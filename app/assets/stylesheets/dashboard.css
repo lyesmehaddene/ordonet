@@ -81,7 +81,8 @@
 
 .patient-count-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
   grid-gap: 34px;
   justify-items: center;
   margin-bottom: 20px;
