@@ -97,6 +97,13 @@ class OrdonnancesController < ApplicationController
     end
   end
 
+  def send_email
+    ordonnance = Ordonnance.find(params[:id])
+    appointment = Appointment.find(params[:appointment_id])
+    patient = appointment.patient
+    PdfMailer.post_appointment(ordonnance, appointment, patient).deliver_now
+    render plain: 'Email sent successfully', status: :ok
+  end
 
   private
 

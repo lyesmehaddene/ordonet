@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :ordonnances, only: %i[show create new] do
       get :create_pdf, on: :member
       get 'generate_qrcode', on: :member, to: 'ordonnances#generate_qrcode'
+      post :send_email, on: :member
     end
   end
 
