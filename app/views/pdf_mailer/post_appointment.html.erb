@@ -6,7 +6,10 @@
 <p>
   Suite à votre Rendez-vous du <%= @appointment.created_at.strftime("%d/%m/%Y") %> avec le Docteur <%= @ordonnance.doctor.user.last_name %>, veuillez trouver ci-joint votre ordonnance.
 </p>
-<% attachments['ordonnance.pdf'] = File.read('app/assets/images/Lyes_Mehaddene-Maudie_Marvin_2023-09-06.pdf') %>
+<p>
+  <a href="<%= "https://#{cl_path(@appointment.pdf.key)}" %>" target="_blank">Cliquez ici pour voir votre ordonnance</a>
+</p>
 <p>
   Cordialement,
 </p>
+<%# <% attachments['ordonnance.pdf'] = File.read("https://res.cloudinary.com/#{ENV['CLOUDINARY_CLOUD_NAME']}/raw/upload/#{@appointment.pdf.key}.pdf") %>
