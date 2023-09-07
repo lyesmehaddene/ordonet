@@ -9,8 +9,8 @@ puts 'initializing seed'
 require 'faker'
 
 puts 'Destroying all...'
-Medication.destroy_all
 OrdoMedication.destroy_all
+Medication.destroy_all
 Ordonnance.destroy_all
 Appointment.destroy_all
 Doctor.destroy_all
