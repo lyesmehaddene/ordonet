@@ -7,7 +7,7 @@
   Suite à votre Rendez-vous du <%= @appointment.created_at.strftime("%d/%m/%Y") %> avec le Docteur <%= @ordonnance.doctor.user.last_name %>, veuillez trouver ci-joint votre ordonnance.
 </p>
 <p>
-  <a href="<%= "https://#{cl_path(@appointment.pdf.key)}" %>" target="_blank">Cliquez ici pour voir votre ordonnance</a>
+  <a href="<%= "#{cl_path(@appointment.pdf.key)}" %>" target="_blank">Cliquez ici pour voir votre ordonnance</a>
 </p>
 <p>
   Cordialement,
