@@ -1,0 +1,40 @@
+.home_video {
+  width: 100vw;
+  max-height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.home-video-wrapper {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.79);
+}
+
+.hero-h1{
+  font-size: 40px;
+  color: white;
+  font-family: poppins;
+  padding: 20px;
+  align-items: center;
+  z-index: 100;
+}
+
+.hero-h2{
+  font-size: 20px;
+  color: white;
+  font-family: poppins;
+  padding: 20px;
+  margin-bottom: 20px;
+  align-items: center;
+  z-index: 100;
+}

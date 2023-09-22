@@ -1,30 +1,19 @@
-<div id="main">
-  <header>
-    <h1>Bienvenue sur Ordonet</h1>
-    <p>Accédez facilement aux informations médicales, aux rendez-vous des patients et bien plus encore.</p>
-  </header>
-
-  <div class="container">
-    <div class="welcome-text">
-
-    </div>
-    <div class="features">
-      <div class="feature">
-        <div class="feature-icon">📋</div>
-        <div class="feature-title">Dossiers Médicaux</div>
-        <p>Gérez et consultez les dossiers médicaux de vos patients de manière sécurisée.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📅</div>
-        <div class="feature-title">Rendez-vous</div>
-        <p>Planifiez et suivez les rendez-vous avec vos patients.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📄</div>
-        <div class="feature-title">Ordonnances</div>
-        <p>Envoyez des ordonnances de façon securisé.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="home-video-wrapper">
+  <%= video_tag "Demo_Ordonet.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, class: "home_video" %>
+  <h1 class="hero-h1">
+    Bienvenue sur Ordonet
+  </h1>
+  <h2 class="hero-h2">
+    Digitalisez et sécurisez vos ordonnances en quelques clics
+  </h2>
+      <ul class="nav-links">
+      <% if user_signed_in? %>
+        <%= link_to "Dashboard", search_by_day_patients_path, class: 'primary-button' %>
+        <%= link_to "Profile", root_path, class: 'primary-button' %>
+        <%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: 'secondary-btn' %>
+      <% else %>
+        <%= link_to 'Connexion', new_user_session_path, class: 'primary-button' %>
+        <%= link_to 'S\'inscrire', new_user_registration_path, class: 'secondary-btn' %>
+      <% end %>
+    </ul>
 </div>
