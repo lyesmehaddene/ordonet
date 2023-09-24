@@ -15,13 +15,17 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= render 'shared/navbar' %>
-    <% if user_signed_in? && current_user.doctor.present? %>
-        <%= render 'shared/sidenav' %>
-    <% end %>
-    <%= turbo_frame_tag "remote_modal", target: "_top" %>
-    <%= yield %>
+ <body>
+ <% if request.path != root_path %>
+  <%= render 'shared/navbar' %>
+  <% end %>
+  <% if user_signed_in? && current_user.doctor.present? %>
+    <%= render 'shared/sidenav' %>
+  <% end %>
+  <%= turbo_frame_tag "remote_modal", target: "_top" %>
+  <%= yield %>
+  <% if request.path != root_path %>
     <%= render 'shared/footer' %>
-  </body>
+  <% end %>
+</body>
 </html>
