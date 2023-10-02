@@ -9,10 +9,12 @@
         <div class="form-inputs">
           <div class="row">
             <%= f.input :accreditation_number,
+                        label: "Numéro d'accréditation",
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "Accréditation" }%>
             <%= f.input :specialty,
+                        label: "Spécialité",
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "Spécialité" }, class: 'col-6 mb-3'%>

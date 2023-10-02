@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  get 'dashboard', to: 'pages#dashboard_new'
+  get 'dashboard', to: 'pages#dashboard'
 
   resources :patients do
     collection do

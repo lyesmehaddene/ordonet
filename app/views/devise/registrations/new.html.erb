@@ -14,20 +14,24 @@
                 input_html: { autocomplete: "email" }%>
    <div class="col-6 mb-3">
     <%= f.input :first_name,
+                label: "Prénom",
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "Prénom" }, class: 'col-6 mb-3'%>
                 </div>
   <div class="col-6 mb-3">
     <%= f.input :last_name,
+                label: "Nom de famille",
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "Nom de famille" }%></div>
      <%= f.input :password,
+                label: "Mot de passe",
                 required: true,
                 hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                 input_html: { autocomplete: "Mot de passe" }%>
       <%= f.input :password_confirmation,
+                label: "Confirmer mot de passe",
                 required: true,
                 input_html: { autocomplete: "Confirmer mot de passe" }%>
       <%= f.hidden_field :user_type, value: 'doctor' %>
@@ -35,8 +39,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up", class: 'primary-button'%>
-    <%= f.button :submit, "Log in", class: 'secondary-btn'%>
+    <%= f.button :submit, "S'inscrire", class: 'primary-button'%>
+    <%= f.button :submit, "Se connecter", class: 'secondary-btn'%>
   </div>
     </div>
   </div>
