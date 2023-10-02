@@ -7,13 +7,15 @@
 
   <div class="form-inputs">
     <%= f.input :email,
+                label: "Email",
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
+                label: "Mot de passe",
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.input :remember_me, label: "Se rappeler de moi", as: :boolean if devise_mapping.rememberable? %>
     <div class="row form-actions">
     <%= f.button :submit, "Se connecter", class: 'primary-button'%>
       <%= render "devise/shared/links" %>
